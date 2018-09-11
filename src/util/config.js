@@ -32,4 +32,5 @@ const objBase = {
 export {
     baseURL,
     objBase,
+    config,
 }
