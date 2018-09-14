@@ -20,13 +20,15 @@ const objBase = {
     },
     timeout: 5000,
     withCredentials: false, 
-    responseType: 'json' 
+    responseType: 'json',
+    withCredentials: true,
 }
  const config = {
         baseURL: 'http://127.0.0.1:8080',
         headers: {
           "Content-Type": "multipart/form-data" 
-        }
+        },
+        withCredentials: true,
       };
 
 export {
