@@ -2,6 +2,14 @@ const lazyload = (name) => (resolve) => require([`@/pages/${name}`], resolve)
 
 const routerMap = [
     {
+        path: '/',
+        name: '登录',
+        meta: {
+            title: '移动会议'
+        },
+        component: lazyload('LoginPage')
+    },
+    {
         path: '/404',
         name: '404',
         meta: {
