@@ -41,7 +41,7 @@ export default {
           this.setLoginPrams.loginName=this.nameInput;
           this.setLoginPrams.password=this.passwordInput;
           axion.userLogin(this.setLoginPrams).then(d=>{
-              console.log("111");
+              
           })
       }
   }

@@ -9,7 +9,7 @@ const upload = (_url, obj) => axios.post(_url, obj, config);
 
 const getAll = () => get('/getAll');
 const getByName = (name) => post('/select', name);
-const userLogin = (loginName,password) => post("/user/login",loginName,password);
+const userLogin = (loginName,password) => post("/login",loginName,password);
 const uploadPic = (file) => {
 	console.log("emmmm");
 	console.log(file);
