@@ -48,12 +48,12 @@ const routerMap = [
         component: lazyload('secondPage')
     },
     {
-        path: '/third',
-        name: 'third',
+        path: '/homePage',
+        name: 'HomePage',
         meta: {
-            title: 'mady'
+            title: '移动会议'
         },
-        component: lazyload('thirdPage')
+        component: lazyload('HomePage')
     }
 ]
 

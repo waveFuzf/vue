@@ -10,6 +10,8 @@ const upload = (_url, obj) => axios.post(_url, obj, config);
 const getAll = () => get('/getAll');
 const getByName = (name) => post('/select', name);
 const userLogin = (loginName,password) => post("/login",loginName,password);
+const userSign = (loginName,password) => post("/sign",loginName,password);
+const userLogout = (token,username) => post("/logout",token,username);
 const uploadPic = (file) => {
 	console.log("emmmm");
 	console.log(file);
@@ -18,5 +20,7 @@ export default {
     getAll,
     getByName,
     uploadPic,
-    userLogin
+    userLogin,
+    userSign,
+    userLogout
 }
