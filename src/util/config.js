@@ -22,6 +22,28 @@ const objBase = {
     responseType: 'json',
     withCredentials: true,
 }
+
+const objInfo = {
+    url: '/get',
+    method: 'get', 
+    baseURL: baseURL,
+    headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+    },
+    transformRequest: [
+        function(data) {
+            data = JSON.stringify(data);
+            return data;
+        }
+    ],
+    paramsSerializer: function(params) {
+        return JSON.stringify(params)
+    },
+    timeout: 5000,
+    responseType: 'json',
+    withCredentials: true,
+}
+
  const config = {
         // baseURL: '/api',
         baseURL: 'http://127.0.0.1:8080',
@@ -35,4 +57,5 @@ export {
     baseURL,
     objBase,
     config,
+    objInfo
 }

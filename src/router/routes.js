@@ -32,14 +32,6 @@ const routerMap = [
         component: lazyload('errorPage/500')
     },
     {
-        path: '/first',
-        name: 'first',
-        meta: {
-            title: 'mady'
-        },
-        component: lazyload('firstPage')
-    },
-    {
         path: '/second',
         name: 'second',
         meta: {
@@ -53,12 +45,20 @@ const routerMap = [
         meta: {
             title: '移动会议'
         },
-        component: lazyload('HomePage')
+        component: lazyload('HomePage'),
+        children: [{
+            path: '/first',
+            name: 'first',
+            meta: {
+                title: 'mady'
+            },
+            component: lazyload('firstPage')
+        },]
     }
 ]
 
-const routes =[...routerMap]
+const routes = [...routerMap]
 
-export{
+export {
     routes
 }

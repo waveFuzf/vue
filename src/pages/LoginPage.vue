@@ -52,7 +52,7 @@ export default {
             return;
           }
           saveCookie("token", d.data.data);
-          this.$router.push("/homePage");
+          this.$router.push("/first");
         });
       } else {
         axion.userSign(this.setLoginPrams).then(d => {
