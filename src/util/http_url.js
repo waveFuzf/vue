@@ -1,7 +1,5 @@
 import axios from 'axios'
-import { objBase, baseURL, config,objInfo} from './config'
-import { userInfo } from 'os';
-
+import { objBase,config, objInfo} from './config'
 
 
 const get = (_url) => axios.get(_url, objBase);
@@ -16,18 +14,20 @@ const userSign = (loginName, password) => post("/sign", loginName, password);
 const userLogout = (token, username) => post("/logout", token, username);
 const deleteUser = (token, userId) => post("/deleteUser", token, userId);
 const getDeptsList = (token) => post("/department/getAll", token);
-const updateUserInfo =(token,userInfo)=>postInfo("/userInfo?token="+token,userInfo);
-const getUserInfo = (token)=>post("/getMyInfo",token);
-const getUserCount=(token)=>post("/getUserCount",token);
-const uploadPic = (file) => {
-    console.log("emmmm");
-    console.log(file);
-    upload('/file/upload', file);
-}
+const updateUserInfo = (token, userInfo) => postInfo("/userInfo?token=" + token, userInfo);
+const getUserInfo = (token) => post("/getMyInfo", token);
+const getUserCount = (token) => post("/getUserCount", token);
+const getUserBynameCount = (token) => post("/countUsersByName", token);
+const uploadUserExcel = (file,token) => upload('/importUserList?token='+token, file);
+const getDeptCount = (token) => post("/department/getDeptCount", token);
+const getDept=(token,pageNo)=>post("department/getDept",token,pageNo);
+const getDirectors=(token)=>post("/getDirectors",token);
+const deleteDept=(token,id)=>post("/department/deleteModel",token,id);
+const updateDeptInfo = (token, deptInfo) => postInfo("/department/deptInfo?token=" + token, deptInfo);
 export default {
     getAll,
     getByName,
-    uploadPic,
+    uploadUserExcel,
     userLogin,
     userSign,
     userLogout,
@@ -35,5 +35,11 @@ export default {
     getDeptsList,
     updateUserInfo,
     getUserInfo,
-    getUserCount
+    getUserCount,
+    getUserBynameCount,
+    getDeptCount,
+    getDept,
+    getDirectors,
+    deleteDept,
+    updateDeptInfo
 }

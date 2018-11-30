@@ -7,7 +7,7 @@ const routerMap = [
         meta: {
             title: '移动会议'
         },
-        component: lazyload('LoginPage')
+        component: lazyload('loginPage')
     },
     {
         path: '/404',
@@ -45,15 +45,32 @@ const routerMap = [
         meta: {
             title: '移动会议'
         },
-        component: lazyload('HomePage'),
+        component: lazyload('homePage'),
         children: [{
-            path: '/first',
-            name: 'first',
+            path: '/default',
+            name: 'default',
             meta: {
                 title: 'mady'
             },
-            component: lazyload('firstPage')
-        },]
+            component: lazyload('default')
+        },
+        {
+            path: '/user',
+            name: 'user',
+            meta: {
+                title: 'mady'
+            },
+            component: lazyload('userPage')
+        },
+        {
+            path: '/dept',
+            name: 'dept',
+            meta: {
+                title: 'mady'
+            },
+            component: lazyload('department')
+        }
+    ]
     }
 ]
 

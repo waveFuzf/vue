@@ -4,7 +4,7 @@
     <el-header>
       <img src="../assets/img/icon.png" style="width:auto;height:60px;float:left;">
       <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-        <el-menu-item index="1"><a @click="$router.push('first')">处理中心</a></el-menu-item>
+        <el-menu-item index="1"><a @click="$router.push('user')">处理中心</a></el-menu-item>
         <el-submenu index="2">
           <template slot="title">会议申请审核</template>
           <el-menu-item index="2-1">未审核</el-menu-item>
@@ -79,4 +79,9 @@ export default {
 .el-button {
   margin: 0 50px;
 }
+.el-main {
+  padding-top: 30px;
+  padding-left: 50px;
+}
+
 </style>
