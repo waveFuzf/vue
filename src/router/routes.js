@@ -52,7 +52,7 @@ const routerMap = [
             meta: {
                 title: 'mady'
             },
-            component: lazyload('default')
+            component: lazyload('admin/default')
         },
         {
             path: '/user',
@@ -60,7 +60,7 @@ const routerMap = [
             meta: {
                 title: 'mady'
             },
-            component: lazyload('userPage')
+            component: lazyload('admin/userPage')
         },
         {
             path: '/dept',
@@ -68,10 +68,52 @@ const routerMap = [
             meta: {
                 title: 'mady'
             },
-            component: lazyload('department')
+            component: lazyload('admin/department')
         }
     ]
-    }
+    },
+    {
+        path: '/userHomePage',
+        name: '普通用户',
+        meta: {
+            title: '移动会议-个人中心'
+        },
+        component: lazyload('userHomePage'),
+        children: [{
+            path: '/userHomePage/huiyi',
+            name: '我的会议',
+            meta: {
+                title: '移动会议-个人中心'
+            },
+            component: lazyload('user/huiyi')
+        },
+        {
+            path: '/userHomePage/jilu',
+            name: '会议记录',
+            meta: {
+                title: '移动会议-个人中心'
+            },
+            component: lazyload('user/jilu')
+        },
+        {
+            path: '/userHomePage/shenqing',
+            name: '申请会议',
+            meta: {
+                title: '移动会议-个人中心'
+            },
+            component: lazyload('user/shenqing')
+        },
+        {
+            path: '/userHomePage/shezhi',
+            name: '我的设置',
+            meta: {
+                title: '移动会议-个人中心'
+            },
+            component: lazyload('user/shezhi')
+        }
+    ]
+    },
+
 ]
 
 const routes = [...routerMap]

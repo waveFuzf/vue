@@ -31,6 +31,7 @@
 </template>
 <script>
 import axion from "@/util/http_url.js";
+import '@/assets/css/default.css';
 import { saveCookie, getCookie } from "@/util/cookie.js";
 export default {
   data() {
@@ -46,12 +47,12 @@ export default {
     getUserInfo() {
       axion.getUserInfo({token:getCookie("token")}).then(res => {
         this.myInfo=res.data.data;
-        console.log(this.myInfo);
+        console.log(this.myInfo.loginName);
       });
     },
     exit: function(event) {
       axion
-        .userLogout({ token: getCookie("token"), username: "1777" })
+        .userLogout({ token: getCookie("token"), username: this.myInfo.loginName })
         .then(d => {
           if (d.status == 200) {
             this.$message.success("退出成功!");
@@ -62,7 +63,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .el-header {
   line-height: 60px;
   padding: 0;

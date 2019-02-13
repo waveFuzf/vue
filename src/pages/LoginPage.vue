@@ -9,7 +9,7 @@
         <div class="password">
           <input type="password" placeholder="请输入密码" v-model="passwordInput" suffix-icon="el-icon-view" />
         </div>
-        <a class="forget" href="/forget">忘记密码?</a><br>
+        <a class="forget floatRight" href="/forget">忘记密码?</a><br>
         <el-button type="primary" @click="login">{{(type)?"登录":"注册"}}</el-button>
         <div class="footer">{{(type)?"没":"已"}}有账号？<span @click="changeType">{{(!type)?"登录":"注册"}}</span></div>
       </div>
@@ -19,6 +19,7 @@
 <script>
 import axion from "@/util/http_url.js";
 import { saveCookie, getCookie } from "@/util/cookie.js";
+import '@/assets/css/default.css';
 export default {
   data() {
     return {
@@ -31,7 +32,7 @@ export default {
       setLoginPrams: {
         loginName: "",
         password: ""
-      }
+      },
     };
   },
   methods: {
@@ -52,7 +53,7 @@ export default {
             return;
           }
           saveCookie("token", d.data.data);
-          this.$router.push("/default");
+          this.$router.push(d.data.message==1?"/default":"/userHomePage");
         });
       } else {
         axion.userSign(this.setLoginPrams).then(d => {
@@ -84,11 +85,10 @@ input {
   color: #fff;
   line-height: 0px;
 }
-.forget {
+a {
   font-size: 13.3333px;
   color: #8590a6;
   text-decoration: none;
-  float: right;
   margin-top: 5px;
 }
 h1 {

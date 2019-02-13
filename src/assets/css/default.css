@@ -1,0 +1,18 @@
+.floatRight {
+    float: right;
+}
+.floatLeft {
+    float: left;
+}
+.login-yes img {
+    float: left;
+    width: 36px;
+    height: 36px;
+    margin: 8px 0;
+    vertical-align: middle;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    border-radius: 100px;
+}

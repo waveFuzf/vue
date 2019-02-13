@@ -24,6 +24,7 @@ const getDept=(token,pageNo)=>post("department/getDept",token,pageNo);
 const getDirectors=(token)=>post("/getDirectors",token);
 const deleteDept=(token,id)=>post("/department/deleteModel",token,id);
 const updateDeptInfo = (token, deptInfo) => postInfo("/department/deptInfo?token=" + token, deptInfo);
+const getMeetingByStatus = (token,status) => post("/schedule/getMeetringByStatus",token,status);
 export default {
     getAll,
     getByName,
@@ -41,5 +42,6 @@ export default {
     getDept,
     getDirectors,
     deleteDept,
-    updateDeptInfo
+    updateDeptInfo,
+    getMeetingByStatus
 }
