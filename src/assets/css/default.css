@@ -16,3 +16,58 @@
     -o-border-radius: 100px;
     border-radius: 100px;
 }
+.login-no img {
+    float: left;
+    width: 36px;
+    height: 36px;
+    margin: 8px 0;
+    vertical-align: middle;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    border-radius: 100px;
+}
+.caseConsultation-procedure-div {
+    margin-top: 40px;
+    width: 100%;
+    height: 386px;
+    background: url("../img/banner5.png") center center no-repeat;
+    position: relative;
+  }
+
+  .caseConsultation-procedure-div button {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    background: #2F7CE1;
+    color: #fff;
+    bottom: 55px;
+    left: 50%;
+    margin-left: -50px;
+    border-radius: 40px;
+    font-size: 16px;
+    border: 0px;
+    outline: none;
+  }
+
+  .caseConsultation-process-system{
+    padding-top: 40px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 48px;
+    color: #333333;
+    /* margin: 74px 0 20px 0; */
+  }
+
+  .caseConsultation-process-eng{
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 18px;
+    color: #666666;
+    margin: 74px 10px 20px 0;
+  }
+
