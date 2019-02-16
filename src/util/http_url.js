@@ -26,6 +26,7 @@ const deleteDept=(token,id)=>post("/department/deleteModel",token,id);
 const updateDeptInfo = (token, deptInfo) => postInfo("/department/deptInfo?token=" + token, deptInfo);
 const getMeetingByStatus = (token,status) => post("/schedule/getMeetringByStatus",token,status);
 const getExpertsInfo = () => post("getExpertsInfo");
+const getExpertInfoById = (doctorId) => post("getExpertsInfoById",doctorId)
 export default {
     getAll,
     getByName,
@@ -45,5 +46,6 @@ export default {
     deleteDept,
     updateDeptInfo,
     getMeetingByStatus,
-    getExpertsInfo
+    getExpertsInfo,
+    getExpertInfoById
 }

@@ -7,7 +7,7 @@
     <div class="caseConsultation-process-system">我们提供以下的服务</div>
     <div class="caseConsultation-process-eng">What We Offer</div>
     <div style="width:100%;height:150px;">
-        <div v-for="info in services" :key="info" class="floatLeft" style="width:20%;margin:2.5%;"> 
+        <div v-for="info in services" :key="info.index" class="floatLeft" style="width:20%;margin:2.5%;"> 
             <img class="floatLeft" :src="info.icon">
             <div class="floatLeft" style="width:60%;">
                 <div style="color:#425b77;font-weight:bold;">{{info.title}}</div>
@@ -18,7 +18,7 @@
 
     <div class="caseConsultation-process-system">最优秀的专家队伍</div>
     <div class="caseConsultation-process-eng">Experts</div>
-    <div style="width:100%;height:450px;background-color:red;">
+    <div style="width:100%;height:450px;">
         <doctor-info v-for="item in doctorsInfo" :doctorInfo="item" :key="item.index"></doctor-info>
     </div>
     
@@ -79,7 +79,7 @@ export default {
   methods: {
     getExpertsInfo(){
         axion.getExpertsInfo().then(res=>{
-            console.log(res);
+            this.doctorsInfo=res.data.data;
         })
     },  
     ApplyOpenLesson(){

@@ -10,6 +10,14 @@ const routerMap = [
         component: lazyload('userHomePage')
     },
     {
+        path: '/expertInfo',
+        name: '医师详情',
+        meta: {
+            title: '病理大师-医师详情'
+        },
+        component: lazyload('expertInfo')
+    },
+    {
         path: '/404',
         name: '404',
         meta: {
