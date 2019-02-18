@@ -3,7 +3,7 @@
   <header class="header" style="height:50px">
     <div style="margin-left:200px;margin-top:30px;height:100%;">
       <img class="floatLeft" src="../assets/img/icon-font.png" style="height:50px;">
-      <!-- <div class="title">{{pagename}}</div> -->
+      <div class="title">{{pagename}}</div>
       <div v-if="isLogin" class="login-yes floatRight" style="margin-right:100px;width:200px;">
         <img class="floatLeft" v-if="myInfo.photo!=null" :src="myInfo.photo" alt="头像">
         <img class="floatLeft" v-else src="../assets/img/default.jpg" alt="头像">
@@ -77,7 +77,7 @@ export default {
   margin-left: 20px;
   font-size: 20px;
   height: 100%;
-  line-height: 65px;
+  line-height: 50px;
   float: left;
 }
 .login-no a{

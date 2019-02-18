@@ -10,6 +10,14 @@ const routerMap = [
         component: lazyload('userHomePage')
     },
     {
+        path: '/blConsultType',
+        name: '申请',
+        meta: {
+            title: '病理大师'
+        },
+        component: lazyload('blConsultType')
+    },
+    {
         path: '/expertInfo',
         name: '医师详情',
         meta: {

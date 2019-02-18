@@ -84,7 +84,7 @@ export default {
     },  
     ApplyOpenLesson(){
         if(this.isLogin){
-            console.log("进入我的申请！");
+            this.$router.push("/blConsultType")
         }else{
             this.$refs.showLoginOrSign.showLoginOrSign(true);
         }
