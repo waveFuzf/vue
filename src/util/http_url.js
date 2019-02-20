@@ -25,8 +25,10 @@ const getDirectors=(token)=>post("/getDirectors",token);
 const deleteDept=(token,id)=>post("/department/deleteModel",token,id);
 const updateDeptInfo = (token, deptInfo) => postInfo("/department/deptInfo?token=" + token, deptInfo);
 const getMeetingByStatus = (token,status) => post("/schedule/getMeetringByStatus",token,status);
-const getExpertsInfo = () => post("getExpertsInfo");
+const getExpertsInfo = (pageNo,caseTypeId) => post("getExpertsInfo",pageNo,caseTypeId);
 const getExpertInfoById = (doctorId) => post("getExpertsInfoById",doctorId)
+const getExpertsInfoByName = (name) => post("getExpertsInfoByName",name)
+const uploadPic = (formData)=>upload("file/upload",formData);
 export default {
     getAll,
     getByName,
@@ -47,5 +49,7 @@ export default {
     updateDeptInfo,
     getMeetingByStatus,
     getExpertsInfo,
-    getExpertInfoById
+    getExpertInfoById,
+    getExpertsInfoByName,
+    uploadPic
 }
