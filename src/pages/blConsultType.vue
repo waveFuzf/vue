@@ -271,13 +271,10 @@ export default {
      },
      methods:{
         uploads(e){
-            debugger;
             const file = e.target.files[0];
-            console.log(file);
             let formData = new FormData();
             formData.append("file", file);
-            console.log(formData);
-            axion.uploadPic(formData);
+            axion.uploadPic(formData,getCookie("token"));
         },
         openFileSelect() {
             document.querySelector('#file').click()

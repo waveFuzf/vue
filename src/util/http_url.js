@@ -28,7 +28,7 @@ const getMeetingByStatus = (token,status) => post("/schedule/getMeetringByStatus
 const getExpertsInfo = (pageNo,caseTypeId) => post("getExpertsInfo",pageNo,caseTypeId);
 const getExpertInfoById = (doctorId) => post("getExpertsInfoById",doctorId)
 const getExpertsInfoByName = (name) => post("getExpertsInfoByName",name)
-const uploadPic = (formData)=>upload("file/upload",formData);
+const uploadPic = (formData,token)=>upload("file/upload?token="+token,formData);
 export default {
     getAll,
     getByName,
