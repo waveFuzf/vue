@@ -18,7 +18,7 @@ const updateUserInfo = (token, userInfo) => postInfo("/userInfo?token=" + token,
 const getUserInfo = (token) => post("/getMyInfo", token);
 const getUserCount = (token) => post("/getUserCount", token);
 const getUserBynameCount = (token) => post("/countUsersByName", token);
-const uploadUserExcel = (file,token) => upload('/importUserList?token='+token, file);
+const uploadUserExcel = (file) => upload('/importUserList?token='+token, file);
 const getDeptCount = (token) => post("/department/getDeptCount", token);
 const getDept=(token,pageNo)=>post("department/getDept",token,pageNo);
 const getDirectors=(token)=>post("/getDirectors",token);
@@ -27,8 +27,28 @@ const updateDeptInfo = (token, deptInfo) => postInfo("/department/deptInfo?token
 const getMeetingByStatus = (token,status) => post("/schedule/getMeetringByStatus",token,status);
 const getExpertsInfo = (pageNo,caseTypeId) => post("getExpertsInfo",pageNo,caseTypeId);
 const getExpertInfoById = (doctorId) => post("getExpertsInfoById",doctorId)
-const getExpertsInfoByName = (name) => post("getExpertsInfoByName",name)
-const uploadPic = (formData,token)=>upload("file/upload?token="+token,formData);
+const getExpertsInfoByName = (name,pageNo,caseTypeId) => post("getExpertsInfoByName",name,pageNo,caseTypeId)
+const uploadPic = (formData)=>upload("file/upload",formData);
+const uploadExpress = (formData,consultId,type)=>upload("file/uploadExpress?consultId="+consultId+"&type="+type,formData);
+const applyBlRequest =(consultInfo,token)=>postInfo("bldoctor/editConsult.htm?token="+token,consultInfo);
+const getConsultByConsultId =(consultId,token)=>post("/blinquiry/consultDetail.htm",consultId,token);
+const getPayUrl =(consult_id,payType,bcjc,token)=>post("common/consultlist.htm",consult_id,payType,bcjc,token);
+const getConsultsInfo =(doctorType,token,userId)=>post("/blinquiry/getCount.htm",doctorType,token,userId);
+const getConsultsByUserId =(userId,token,doctorType) => post("/blinquiry/doctorGetConsultList.htm",userId,token,doctorType);
+const deleteConsult =(token,consultNo,consultStatus) => post("blConsult/changeStatusByNo",token,consultNo,consultStatus);
+const editConsultCollection=(consult_id,token,doctorType,collection)=>post("bldoctor/editConsultCollection.htm",consult_id,token,doctorType,collection);
+const expertDiagnose=(consultId,slideEstimate,diagnosisEstimate,diagnose,mirrorView)=>post("blexpert/expertDiagnose.htm",consultId,slideEstimate,diagnosisEstimate,diagnose,mirrorView);
+const expertDiagnoseBCJC=(immuneTag,isCandle,materialNum,token)=>post("blexpert/expertAddDiagnose.htm",immuneTag,isCandle,materialNum,token);
+const getDiagnoseDetail=(consultId,token)=>post("blexpert/getDiagnoseDetail.htm",consultId,token)
+const createPdf=(consult_id,type)=>post("common/createPdf.htm",consult_id,type);
+const editAddress =(address_id,province,ity,address,name,phone,isDefault,token)=>post("bldoctor/editAddress.htm",address_id,province,ity,address,name,phone,isDefault,token);
+const getAddress=()=>post("blinquiry/getAddresses.htm",null)
+const editDefault=(addressId)=>post("bldoctor/editDefault.htm",addressId)
+const setBCJCByConsultId=(supplementInfo)=>postInfo("bldoctor/setBCJCByConsultId.htm",supplementInfo);
+const getBCJCsectionByConsId=(consult_id)=>post("bldoctor/getBCJCsectionByConsId.htm",consult_id)
+const editBCJCByConsultId=(supplementInfo)=>postInfo("bldoctor/editBCJCByConsultId.htm",supplementInfo);
+const applyBCJCByExpress=(consultId,addressId)=>post("bldoctor/applyBCJCByExpress.htm",consultId,addressId);
+const getConsultCollection=(userId,pageNum)=>post("blinquiry/getConsultCollection.htm",userId,pageNum)
 export default {
     getAll,
     getByName,
@@ -51,5 +71,25 @@ export default {
     getExpertsInfo,
     getExpertInfoById,
     getExpertsInfoByName,
-    uploadPic
+    uploadPic,
+    applyBlRequest,
+    getConsultByConsultId,
+    getPayUrl,
+    getConsultsInfo,
+    getConsultsByUserId,
+    deleteConsult,
+    editConsultCollection,
+    expertDiagnose,
+    getDiagnoseDetail,
+    expertDiagnoseBCJC,
+    createPdf,
+    editAddress,
+    getAddress,
+    editDefault,
+    setBCJCByConsultId,
+    getBCJCsectionByConsId,
+    editBCJCByConsultId,
+    applyBCJCByExpress,
+    getConsultCollection,
+    uploadExpress
 }

@@ -1,12 +1,20 @@
 <template>
-    <div>
+    <div style="background-color:#f8f7f7;">
         <!-- <el-dialog @close="closeSelectExpert" @chosedExpert="chosedExpertFun" :visible.sync="ifSelectExpert" width="40%" title="选择专家">
         </el-dialog>  -->
         <div>
             <dialog-select-expert  :canVisible="ifSelectExpert" @chosedExpertFun="chosedExpertFun" :caseTypeId="info.caseTypeId"></dialog-select-expert>
         </div> 
-        <layout-header pagename="个人中心" :myInfo="myInfo" :isLogin="isLogin" @getUserInfo="getUserInfo"></layout-header>
-        <div style="margin-top: 40px;margin-left:200px;width:80%;float:left;">
+        
+        <layout-header pagename="申请会诊" :myInfo="myInfo" :isLogin="isLogin" @getUserInfo="getUserInfo"></layout-header>
+        <el-row>
+            <el-col :span="15" :push="2" style="margin-top:50px;font-size:14px;padding-left:20px;">
+                首页 > 我的会诊列表 > 申请会诊
+            </el-col>
+        </el-row>
+        <el-row>
+        <el-col :span="15" :push="2" style="margin-top:20px;background-color:white;border:1px solid #e6e6e6;padding-bottom:30px;">
+        <div style="margin-left:2.5%;margin-top:40px;width:95%;float:left;">
             <div class="floatLeft" :class="{done:done==1}">
                 <span class="bigCircle">1</span>
                 <div class="rectangle"><div @click="clear(null)">选择会诊方式</div></div>
@@ -24,15 +32,25 @@
                 <div class="rectangle"><div @click="clear(4)">提交订单</div></div>
             </div>
         </div>
-        <div style="margin-top: 40px;margin-left:200px;width:80%;float:left;">
+        <div style="margin-top: 40px;width:95%;float:left;margin-left:2.5%;">
             <el-row v-if="done==1">
-                <el-col :span="8" v-for="slideTypeInfo in slideTypesInfo" :key="slideTypeInfo.index">
+                <el-row>
+                <el-col :span="4" :push="3*(index+1)" v-for="(slideTypeInfo,index) in slideTypesInfo" :key="slideTypeInfo.index">
                     <img :src="slideTypeInfo.icon" width="125" height="125" @click="changeSlideType(slideTypeInfo)">
                     <p style="margin-top:20px;margin-left:17px;">{{slideTypeInfo.title}}</p>
                 </el-col>
+                </el-row>
+                温馨提示
+                <div style="border:0.5px solid #ebebeb;margin:10px 0px;"></div>
+                <div style="font-size:12px;">
+                数字切片会诊：
+仅限与平台做过对接的扫描设备，支持与麦克奥迪，江丰，优纳等厂商设备对接，并支持上传Aperio，罗氏，滨松，3D histech等厂家格式的切片；快速扫描切片上传，专家移动会诊，降低会诊时长。
+<br><br>
+寄送切片会诊：
+寄送病理切片及其他临床病历至会诊中心，经数字化后再进行会诊。</div>
             </el-row>
             <el-row v-if="done==2">
-                <el-col :span="8" v-for="caseTypeInfo in caseTypesInfo" :key="caseTypeInfo.index">
+                <el-col :span="4" :push="3*(index+1)" v-for="(caseTypeInfo,index) in caseTypesInfo" :key="caseTypeInfo.index">
                     <div v-if="!(caseTypeInfo.caseType == '303' && info.slideType == '1')">
                         <img :src="caseTypeInfo.icon" width="125" height="125" @click="changeCaseType(caseTypeInfo)">
                         <p style="margin-top:20px;margin-left:17px;">{{caseTypeInfo.title}}</p>
@@ -40,47 +58,48 @@
                 </el-col>
             </el-row>
             <el-row v-if="done==3">
-                <el-form :model="params" label-width="120px">
+                <el-col :push="2">
+                <el-form :model="consultInfo" label-width="120px">
                     <el-row type="flex">
                         <div style="font-weight:normal;">患者信息</div>
                         <div style="color:#425b77;font-size:12px;margin-left:500px;line-height:21px;">送检医生：<span>{{myInfo.name}}</span></div>
                     </el-row>
                     <el-row style="margin-top:20px;">
-                        <el-col :xs="10" :sm="8" :lg="10">
+                        <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="住院/门诊号：" prop="number">
-                                <el-input v-model="params.paramId"  :maxlength="32" ></el-input>
+                                <el-input v-model="consultInfo.paramId"  :maxlength="32" ></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
 
                     <el-row style="margin-top:20px;">
-                        <el-col :xs="10" :sm="8" :lg="10">
+                        <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="患者姓名：" prop="name">
-                                <el-input v-model="params.name"  :maxlength="32" ></el-input>
+                                <el-input v-model="consultInfo.name"  :maxlength="32" ></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row>
-                        <el-col :xs="10" :sm="8" :lg="10">
+                        <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="性别：" prop="gender">
-                                <el-radio v-model="params.sex" label="男">男</el-radio>
-                                <el-radio v-model="params.sex" label="女">女</el-radio>
+                                <el-radio v-model="consultInfo.sex" label="男">男</el-radio>
+                                <el-radio v-model="consultInfo.sex" label="女">女</el-radio>
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row>
-                        <el-col :xs="10" :sm="8" :lg="10">
+                        <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="年龄：" prop="age">
-                                <el-input  placeholder="请输入年龄" v-model="params.age" :maxlength="3"></el-input>
+                                <el-input  placeholder="请输入年龄" v-model="consultInfo.age" :maxlength="3"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
                     <el-row>
-                        <el-col :xs="10" :sm="8" :lg="10">
+                        <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="送检部位：" prop="position">
-                                <el-input placeholder="请输入内容" v-model="params.parts"  :maxlength="11">
-                                    <el-select v-model="params.subspecialityName" slot="prepend" placeholder="请选择" style="width: 120px" @change="changeBysubspecialityId">
-                                        <el-option v-for="item in yzkList" :key="item.value" :label="item.name" :value="item"></el-option>
+                                <el-input placeholder="请输入内容" v-model="consultInfo.parts"  :maxlength="11">
+                                    <el-select v-model="consultInfo.subspecialityName" slot="prepend" placeholder="请选择" style="width: 120px" @change="changeBysubspecialityId">
+                                        <el-option v-for="item in yzkList" :key="item.value" :label="item.name" :value="item.name"></el-option>
                                     </el-select>
                                 </el-input>
                             </el-form-item>
@@ -88,25 +107,25 @@
                     </el-row>
 
                     <el-row style="margin-top:20px;">
-                        <el-col :xs="10" :sm="8" :lg="10">
+                        <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="联系电话：" prop="phone">
-                                <el-input v-model="params.phone"  :maxlength="32" ></el-input>
+                                <el-input v-model="consultInfo.phone"  :maxlength="32" ></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
 
                     <el-row style="margin-top:20px;">
-                        <el-col :xs="10" :sm="8" :lg="10">
+                        <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="临床诊断：" prop="clinicalDiagnosis">
-                                <el-input v-model="params.clinicalDiagnosis"  :maxlength="32"></el-input>
+                                <el-input v-model="consultInfo.clinicalDiagnosis"  :maxlength="32"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
 
                     <el-row>
-                        <el-col :xs="10" :sm="8" :lg="10">
+                        <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="病情介绍：">
-                                <el-input v-model="params.casePresentation" type="textarea" :rows="3"></el-input>
+                                <el-input v-model="consultInfo.casePresentation" type="textarea" :rows="3"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -114,9 +133,9 @@
                     <el-row>原病理检查信息</el-row>
 
                     <el-row>
-                        <el-col :xs="10" :sm="8" :lg="10">
+                        <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="原病理诊断：" prop="oldDiagnosis">
-                                <el-input v-model="params.oldDiagnosis" :maxlength="256"></el-input>
+                                <el-input v-model="consultInfo.oldDiagnosis" :maxlength="256"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -124,10 +143,11 @@
                     <el-row>
                         <el-form-item label="添加切片：" prop="slicePhotos">
                             <span>
-							    <div v-for="item in slidesInfo" :key="item.value">
-								    <img style="width:100px;height:100px;" src="../assets/img/default.jpg">
+							    <div class="slides" v-for="(item, index) in successSlidesInfo" :key="item.uuid" >
+								    <img style="width:100px;height:100px;" :src="item.path">
+                                    <i class="el-icon-delete" @click="deleteSlide(index)"></i>
 							    </div>
-							    <div class="upload" @click="openFileSelect">
+							    <div class="upload floatLeft" @click="openFileSelect">
                                     <i class="el-icon-plus avatar-uploader-icon" style="font-size:20px;margin:40px;"></i>
 							    </div>
 						    </span>
@@ -140,10 +160,10 @@
                     <el-row>
                         <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="会诊目的：" prop="purpose">
-                                <el-checkbox-group v-model="params.purpose">
+                                <el-checkbox-group v-model="consultInfo.purpose">
                                     <el-checkbox v-for="item in purposes" :key="item.key" :label="item.key">{{item.value}}</el-checkbox>
                                 </el-checkbox-group>
-                            <el-input v-show="isotherpurpose" v-model="params.otherpurpose"></el-input>
+                            <el-input v-show="isotherpurpose" v-model="consultInfo.otherpurpose"></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
@@ -162,20 +182,37 @@
             
                     </el-row>
                     <el-row style="margin-top:20px;">
-                        <el-col :xs="10" :sm="8" :lg="10">
+                        <el-col :xs="10" :sm="8" :lg="12">
                             <el-form-item label="备注" prop="remake">
-                                <el-input v-model="params.patientRemark"  :maxlength="32" ></el-input>
+                                <el-input v-model="consultInfo.patientRemark"  :maxlength="32" ></el-input>
                             </el-form-item>
                         </el-col>
                     </el-row>
                 </el-form>
+
                 <div>
 				    <el-button  @click="saveAndCommit('commit')">提交并支付</el-button>
 				    <el-button @click="saveAndCommit('save')">保存</el-button>
-			</div>
+			    </div>
+                </el-col>
+                
             </el-row>
         </div>
+        
+        </el-col>
+        <el-col :span="5" :push="3" style="margin-top:20px;background-color:white;border:1px solid #e6e6e6;padding:30px;color:#415b77;font-size:20px">
+
+             会诊流程
+             <el-steps direction="vertical" :active="0" space="50px" style="margin-top:10px;">
+                <el-step title="填写会诊申请单"></el-step>
+                <el-step title="线上支付会诊费用"></el-step>
+                <el-step title="专家阅片并编辑诊断意见"></el-step>
+                <el-step title="打印报告"></el-step>
+            </el-steps>
+        </el-col>
+        </el-row>
         <input type="file" name="file" id="file" style="display: none;" @change='uploads'>
+        <div style="background-color:#374266;height:50px;margin-top:71px;width:100%;"></div>
     </div>
 </template>
 
@@ -189,15 +226,14 @@ export default {
     },
     computed: {
         'isotherpurpose': function() {
-            if(!this.params.purpose.indexOf("其他")) {
+            if(!this.consultInfo.purpose.indexOf("其他")) {
                 return true
             }
         }
     },
     data() {
         return{
-            slidesInfo:[],
-            chosedSlides:[],
+            consultId:null,
             purposes: [
                 {key: '明确诊断', value: '明确诊断'},
                 {key: '治疗方案', value: '治疗方案'},
@@ -208,10 +244,12 @@ export default {
             info:{
                 slideType:"",
                 caseTypeId:"",
+                caseTypeName:"",
             },
             myInfo: {},
             pagename: "个人中心",
             isLogin:false,
+            successSlidesInfo:[],
             slideTypesInfo:[
                 {icon:require("../assets/img/icon-digitalslice.png"),title:"数字切片会诊",slideType:"0"},
                 {icon:require("../assets/img/icon-frozen.png"),title:"寄送切片会诊",slideType:"1"},
@@ -231,22 +269,16 @@ export default {
                 ],
             ifSelectExpert:false,
             chosedExpert:{},
-            params : {
+            consultInfo : {
               purpose: [],
               otherpurpose: '',
-              type : 0,
-              teamType : 0,
-              levelType : 0,
               slideType : 1,
               consultStatus : 0,
               caseTypeId : '',
               caseTypeName : '',
               subspecialityName : '',
               subspecialityId: '',    //亚专科id
-              paramType : '',
               paramId : '',
-              idCard : '',
-              firstVisit : '',
               name : '',
               parts: '',
               sex : '男',
@@ -254,44 +286,65 @@ export default {
               phone : '',
               clinicalDiagnosis : '',
               casePresentation : '',
-              consultationPurpose : '',
-              familyAddress : '',
-              expertDocId : '',
-              slideList : [],
-              fileList : [],
+              expertDoc : '',
               patientRemark: '',
               oldDiagnosis:'',
-              address_id1: null,
-              address_id2: null,
+              applyDoc:''
             },
         }       
     },
      mounted() {
          this.getUserInfo();
+         this.consultId=this.$route.query.consult_id;
+         if(this.consultId!=null){
+             axion.getConsultByConsultId({consultId:this.consultId,token:getCookie("token")}).then(res=>{
+
+             });
+         }
      },
      methods:{
+        deleteSlide(val){
+            this.successSlidesInfo.splice(val,1);
+        },
         uploads(e){
             const file = e.target.files[0];
             let formData = new FormData();
             formData.append("file", file);
-            axion.uploadPic(formData,getCookie("token"));
+            axion.uploadPic(formData).then(res=>{
+                // if(res.data.message)
+                this.successSlidesInfo.push(res.data.data);
+            });
         },
         openFileSelect() {
             document.querySelector('#file').click()
         },
         saveAndCommit(val){
+            this.consultInfo.caseTypeId=this.info.caseTypeId;
+            this.consultInfo.caseTypeName=this.info.caseTypeName;
+            this.consultInfo.slideType=this.info.slideType;
+            this.consultInfo.uploadSlidesList=this.successSlidesInfo;
+            this.consultInfo.applyDoc=this.myInfo;
             if(val ==  'commit'){
-                this.params.consultStatus = 2;
+                this.consultInfo.consultStatus = 2;
 
             }else if (val == 'save'){
-                this.params.consultStatus = 1;
+                return;
+                // this.consultInfo.consultStatus = 1;
             }
-            console.log(this.params);
+            console.log(this.consultInfo);
+            axion.applyBlRequest(this.consultInfo,getCookie("token")).then(res=>{
+                // console.log(res);
+                if(res.data.code!="SUCCESS"){
+                    return;
+                }
+                this.$router.push("/payOnline?consultId="+res.data.data);
+            })
+            
         },
         chosedExpertFun(item){
             if (item) {
                 this.chosedExpert = item;
-                this.params.expertDocId = item.userId
+                this.consultInfo.expertDoc = item;
             }
             this.closeSelectExpert();
         },
@@ -302,7 +355,7 @@ export default {
             this.ifSelectExpert = true
         },
         changeBysubspecialityId(obj){
-            this.params.subspecialityId = obj.value;
+            this.consultInfo.subspecialityId = obj.value;
         },
         changeSlideType(val) {
             this.info.slideType=val.slideType;
@@ -310,6 +363,7 @@ export default {
         },
         changeCaseType(val) {
             this.info.caseTypeId=val.caseType;
+            this.info.caseTypeName=val.title;
             this.changeDone();
         },
         changeDone(){
@@ -364,10 +418,10 @@ export default {
     text-align: center;
     line-height: 52px;
     border: 2px white solid;
-
+    background-color: #f4f4f4;
 }
 .done {
-    width: 20%;
+    width: 24.4%;
 }
 .done .bigCircle {
     color: #fff;
@@ -380,12 +434,14 @@ export default {
     line-height: 44px;
     padding-left: 50px;
     margin: 5px;
+    font-size: 12px;
 }
 .done .rectangle {
     margin-left: 33px;
     margin-right: -20px;
 }
 .rectangle div{
+    font-size: 12px;
     height: 44px;
     line-height: 44px;
     padding-left: 50px;
@@ -394,9 +450,10 @@ export default {
 .rectangle {
     margin-left: 33px;
     margin-right: -20px;
+    background-color: #f4f4f4;
 }
 .floatLeft {
-    width: 20%;
+    width: 24.4%;
 }
 .upload {
     width:100px;
@@ -406,6 +463,27 @@ export default {
 }
 .upload:hover {
     border:1px dashed #1d68ca;
+}
+/* .slides .delete {
+    display: none;
+} */
+.slides:hover .el-icon-delete{
+    display: block;
+}
+.el-icon-delete {
+    display: none;
+    margin-left: 80px;
+    margin-top: -110px;
+}
+.slides {
+    float:left;
+    margin-right:10px;
+    width:100px;
+    height:100px;
+    background-color:red;
+}
+.is-process{
+    font-size: 14px;
 }
 </style>
 

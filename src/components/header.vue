@@ -1,14 +1,14 @@
 <template>
-<div>
-  <header class="header" style="height:50px">
-    <div style="margin-left:200px;margin-top:30px;height:100%;">
+<div style="background-color:white;">
+  <header class="header" style="height:100px">
+    <div style="width:80%;margin:0 auto;padding-top:20px;">
       <img class="floatLeft" src="../assets/img/icon-font.png" style="height:50px;">
       <div class="title">{{pagename}}</div>
       <div v-if="isLogin" class="login-yes floatRight" style="margin-right:100px;width:200px;">
         <img class="floatLeft" v-if="myInfo.photo!=null" :src="myInfo.photo" alt="头像">
         <img class="floatLeft" v-else src="../assets/img/default.jpg" alt="头像">
-        <div style="font-size: 12px;margin-top:20px;float:left;color:#333;">
-          {{myInfo.name}}
+        <div style="font-size: 12px;margin-top:20px;float:left;color:#333;cursor:pointer;">
+          <span @click="$router.push('userCenter')">{{myInfo.name}}</span>
         </div>
         <el-button type="primary" size="mini" v-on:click="exit" style="margin-left:20px;margin-top:15px;">退出</el-button>
       </div>
@@ -55,7 +55,7 @@ export default {
       },
       exit: function(event) {
       axion
-        .userLogout({ token: getCookie("token"), username: this.myInfo.loginName })
+        .userLogout({ token: getCookie("token"), username: null })
         .then(d => {
           if (d.status == 200) {
             this.$message.success("退出成功!");
@@ -82,6 +82,12 @@ export default {
 }
 .login-no a{
     cursor: pointer;
+}
+.header {
+  box-shadow:0 2px 6px 0 rgba(47,58,92,.1);
+}
+a {
+  text-decoration: none;
 }
 </style>
 

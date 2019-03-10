@@ -1,6 +1,6 @@
 <template>
   <div>
-    <layout-header ref="showLoginOrSign" :pagename="pagename" :myInfo="myInfo" :isLogin="isLogin" @getUserInfo="getUserInfo"></layout-header>
+    <layout-header ref="showLoginOrSign" :pagename="''" :myInfo="myInfo" :isLogin="isLogin" @getUserInfo="getUserInfo"></layout-header>
     <div class="caseConsultation-procedure-div">
         <button id="tpsqhz" @click="ApplyOpenLesson()">立即<br>申请</button>
     </div>

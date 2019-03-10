@@ -29,7 +29,6 @@
     border-radius: 100px;
 }
 .caseConsultation-procedure-div {
-    margin-top: 40px;
     width: 100%;
     height: 386px;
     background: url("../img/banner5.png") center center no-repeat;
@@ -70,4 +69,43 @@
     color: #666666;
     margin: 74px 10px 20px 0;
   }
+
+  @font-face {
+    font-family: 'iconfont';  /* project id 1064275 */
+    src: url('//at.alicdn.com/t/font_1064275_hikqz0i1i4.eot');
+    src: url('//at.alicdn.com/t/font_1064275_hikqz0i1i4.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1064275_hikqz0i1i4.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1064275_hikqz0i1i4.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1064275_hikqz0i1i4.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1064275_hikqz0i1i4.svg#iconfont') format('svg');
+  }
+    .iconfont{
+        font-family:"iconfont" !important;
+        font-size:12px;font-style:normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::-webkit-scrollbar-track-piece{
+      background-color:#fff;/*滚动条的背景颜色*/
+      -webkit-border-radius:0;/*滚动条的圆角宽度*/
+      }
+      ::-webkit-scrollbar{
+      width:8px;/*滚动条的宽度*/
+      height:8px;/*滚动条的高度*/
+      }
+      ::-webkit-scrollbar-thumb:vertical{/*垂直滚动条的样式*/
+      height:50px;
+      background-color:#999;
+      -webkit-border-radius:4px;
+      outline:2px solid #fff;
+      outline-offset:-2px;
+      border:2px solid #fff;
+      }
+      ::-webkit-scrollbar-thumb:hover{/*滚动条的hover样式*/
+      height:50px;
+      background-color:#9f9f9f;
+      -webkit-border-radius:4px;
+      }
 

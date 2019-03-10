@@ -10,6 +10,71 @@ const routerMap = [
         component: lazyload('userHomePage')
     },
     {
+        path: '/blConsultInfo',
+        name: '主页',
+        meta: {
+            title: '病理大师'
+        },
+        component: lazyload('blConsultInfo')
+    },
+    {
+        path: '/blConsult',
+        name: '主页',
+        meta: {
+            title: '病理大师'
+        },
+        component: lazyload('blConsult')
+    },
+    {
+        path: '/userCenter',
+        name: '个人中心',
+        meta: {
+            title: '病理大师'
+        },
+        component: lazyload('userCenter'),
+        children: [{
+            path: '/userCenter',
+            name: '我的会议',
+            meta: {
+                title: '病理大师-个人中心'
+            },
+            component: lazyload('user/huiyi')
+        },
+        {
+            path: '/jilu',
+            name: '会议记录',
+            meta: {
+                title: '病理大师-个人中心'
+            },
+            component: lazyload('user/jilu')
+        },
+        {
+            path: '/shenqing',
+            name: '申请会议',
+            meta: {
+                title: '病理大师-个人中心'
+            },
+            component: lazyload('user/shenqing')
+        },
+        {
+            path: '/shezhi',
+            name: '我的设置',
+            meta: {
+                title: '病理大师-个人中心'
+            },
+            component: lazyload('user/shezhi')
+        }
+    ]
+    },
+    {
+        path: '/payOnline',
+        name: '支付',
+        meta: {
+            title: '病理大师'
+        },
+        component: lazyload('payOnline')
+    },
+    {
         path: '/blConsultType',
         name: '申请',
         meta: {
@@ -61,7 +126,7 @@ const routerMap = [
         meta: {
             title: '移动会议'
         },
-        component: lazyload('homePage'),
+        component: lazyload('HomePage'),
         children: [{
             path: '/default',
             name: 'default',
@@ -88,47 +153,47 @@ const routerMap = [
         }
     ]
     },
-    {
-        path: '/userHomePage',
-        name: '普通用户',
-        meta: {
-            title: '移动会议-个人中心'
-        },
-        component: lazyload('userHomePage'),
-        children: [{
-            path: '/userHomePage/huiyi',
-            name: '我的会议',
-            meta: {
-                title: '移动会议-个人中心'
-            },
-            component: lazyload('user/huiyi')
-        },
-        {
-            path: '/userHomePage/jilu',
-            name: '会议记录',
-            meta: {
-                title: '移动会议-个人中心'
-            },
-            component: lazyload('user/jilu')
-        },
-        {
-            path: '/userHomePage/shenqing',
-            name: '申请会议',
-            meta: {
-                title: '移动会议-个人中心'
-            },
-            component: lazyload('user/shenqing')
-        },
-        {
-            path: '/userHomePage/shezhi',
-            name: '我的设置',
-            meta: {
-                title: '移动会议-个人中心'
-            },
-            component: lazyload('user/shezhi')
-        }
-    ]
-    },
+    // {
+    //     path: '/userHomePage',
+    //     name: '普通用户',
+    //     meta: {
+    //         title: '移动会议-个人中心'
+    //     },
+    //     component: lazyload('userHomePage'),
+    //     children: [{
+    //         path: '/userHomePage/huiyi',
+    //         name: '我的会议',
+    //         meta: {
+    //             title: '移动会议-个人中心'
+    //         },
+    //         component: lazyload('user/huiyi')
+    //     },
+    //     {
+    //         path: '/userHomePage/jilu',
+    //         name: '会议记录',
+    //         meta: {
+    //             title: '移动会议-个人中心'
+    //         },
+    //         component: lazyload('user/jilu')
+    //     },
+    //     {
+    //         path: '/userHomePage/shenqing',
+    //         name: '申请会议',
+    //         meta: {
+    //             title: '移动会议-个人中心'
+    //         },
+    //         component: lazyload('user/shenqing')
+    //     },
+    //     {
+    //         path: '/userHomePage/shezhi',
+    //         name: '我的设置',
+    //         meta: {
+    //             title: '移动会议-个人中心'
+    //         },
+    //         component: lazyload('user/shezhi')
+    //     }
+    // ]
+    // },
 
 ]
 

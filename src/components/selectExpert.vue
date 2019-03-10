@@ -1,11 +1,11 @@
 <template>
-<el-dialog @close="chosedExpertFun" :visible.sync="childVisible" width="40%" title="选择专家">
+<el-dialog @close="chosedExpertFun" :visible.sync="childVisible" width="40%" title="选择专家" top="5vh">
     <div>
         <div style="margin-top: -70px; margin-right: 40px;width:50%;float:right;">
             <el-input style="width: 100%" v-model.trim="expertName" placeholder="请输入专家姓名" @keyup.enter.native="searchExpertList">
             </el-input>
         </div>
-        <ul style="height:460px;overflow-y:scroll;margin:0;padding:0px;" class="scroll-ui" v-scroll="loadMore">
+        <ul style="height:350px;overflow-y:scroll;margin:0;padding:0px;" class="scroll-ui" v-scroll="loadMore">
             
             <li v-for="item in doctorsInfo" :key="item.userId" style="list-style:none;height:105px;">
                 <div @click="chosedExpertFun(item)">
@@ -24,7 +24,7 @@
                     </el-col>
                 </div>
             </li>
-            <!-- <li><div v-if="doctorsInfo.length()==amount">没有更多数据</div></li> -->
+            <li style="text-align:center;"><div v-if="doctorsInfo.length==amount">没有更多数据</div></li>
         </ul>
     </div>
         </el-dialog>
@@ -71,12 +71,12 @@ export default {
             this.pageNo=this.pageNo+1;
             setTimeout(() => {
                 if(this.expertName!=''&&this.doctorsInfo.length<this.amount){
-                    axion.getExpertsInfoByName({name:this.expertName,pageNo:this.pageNo}).then(res=>{
-                        this.doctorsInfo.push(res.data.data);
+                    axion.getExpertsInfoByName({name:this.expertName,pageNo:this.pageNo,caseTypeId:this.caseTypeId}).then(res=>{
+                        this.doctorsInfo=this.doctorsInfo.concat(res.data.data);
                     })
                 }else if(this.expertName == ''&&this.doctorsInfo.length<this.amount) {
-                    axion.getExpertsInfo({pageNo:this.pageNo}).then(res=>{
-                    this.doctorsInfo.push(res.data.data);
+                    axion.getExpertsInfo({pageNo:this.pageNo,caseTypeId:this.caseTypeId}).then(res=>{
+                        this.doctorsInfo=this.doctorsInfo.concat(res.data.data);
                 })
                 }
 
@@ -102,7 +102,10 @@ export default {
         
          searchExpertList(){
              this.pageNo=1;
-             axion.getExpertsInfoByName({name:this.expertName,pageNo:this.pageNo}).then(res=>{
+             if(this.expertName==''||this.expertName==null){
+                 this.getExpertsInfo();
+             }
+             axion.getExpertsInfoByName({name:this.expertName,pageNo:this.pageNo,caseTypeId:this.caseTypeId}).then(res=>{
                   this.doctorsInfo=res.data.data;
                   this.amount=res.data.message;
              })
