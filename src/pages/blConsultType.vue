@@ -183,7 +183,7 @@
                     </el-row>
                     <el-row style="margin-top:20px;">
                         <el-col :xs="10" :sm="8" :lg="12">
-                            <el-form-item label="备注" prop="remake">
+                            <el-form-item label="备注:" prop="remake">
                                 <el-input v-model="consultInfo.patientRemark"  :maxlength="32" ></el-input>
                             </el-form-item>
                         </el-col>
@@ -404,7 +404,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .bigCircle {
     top: 0;
     width: 50px;

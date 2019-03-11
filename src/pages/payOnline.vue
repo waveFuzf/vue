@@ -9,14 +9,14 @@
 
         <el-row :gutter="40" style="width:80%;margin:20px auto;">
             <el-col :span="18" style="border:1px solid #cec5c5;height:470px;background-color:white;">
-                <div style="margin-top:20px;;width:80%;border-bottom:1px solid #cec5c5;height:40px;font-size:20px;">
+                <div style="margin-top:20px;;width:95%;border-bottom:1px solid #cec5c5;height:40px;font-size:20px;">
                     <span>线上支付</span>
                     <span style="color:#425b77;font-size:12px;float:right;">送检医生：<span style="color:#1296db;">{{myInfo.name}}</span></span>
                 </div>
-                <div style="margin-top:20px;;width:80%;height:110px;">
+                <div style="margin-top:20px;;width:100%;height:110px;">
                     <div style="font-size:14px;color:#425b77;float:left;">会诊安排:</div>
                     <div style="float:left;margin-left:20px;border-bottom:1px solid #cec5c5;width:85%;height:110px;">
-                        <img style="float:left;" width="20%;" src="../assets/img/default.jpg">
+                        <img style="float:left;" width="15%;" src="../assets/img/default.jpg">
                         <div style="float:left;font-size:14px;margin-left:20px;">
                             <br><span style="color:#1296db;">{{doctorInfo.doctorPosition}}</span><br><br>
                             <span>{{doctorInfo.hospitalName}}</span>
@@ -31,7 +31,7 @@
                     <div style="float:right;font-size:16px;margin-right:20px;">费用总计：<span style="color:#ff9948;font-size:16px;">￥{{(fee/100).toFixed(2)}}</span></div>
                 </div>
 
-                <div style="width:80%;height:110px;border-bottom:1px solid #cec5c5;">
+                <div style="width:95%;height:110px;border-bottom:1px solid #cec5c5;">
                     <div style="font-size:14px;color:#425b77;float:left;">支付方式:</div>
                     <div style="float:left;margin-left:20px;width:85%;">
                         <img :class="{chosed:payType==1}" width="20%" src="../assets/img/pay_zhifubao.png" @click="payType=1">

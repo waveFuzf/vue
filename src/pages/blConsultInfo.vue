@@ -33,7 +33,7 @@
               <i class="el-icon-document" style="margin-left:20px;">申请单</i>
             </template>
             <div style="width:90%;padding:10px;margin:20px;margin-bottom:0px;height:400px;">
-              <img class="floatLeft" width="10%" src="../assets/img/default.jpg">
+              <img style="float:left;" width="10%" src="../assets/img/default.jpg">
               <div style="color:#425b77;font-size:14px;margin:15px;" class="floatLeft">
                 {{patientInfo.patientName}}&nbsp;&nbsp;&nbsp;&nbsp;
                 {{patientInfo.sex}}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -601,5 +601,8 @@ li {
   width: 80px;
   margin-left: 10px;
   vertical-align: bottom;
+}
+.el-input-number input {
+  width:130px;
 }
 </style>

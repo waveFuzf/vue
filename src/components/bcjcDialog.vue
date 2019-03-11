@@ -158,6 +158,7 @@ export default {
     methods:{
         
         confirm(val){
+            debugger;
             if(val){
                 this.slideForm.isCandel=this.res.isCandel;
                 this.slideForm.materialNum=this.res.materialNum;
@@ -174,8 +175,8 @@ export default {
                 });
             }else{
                 axion.applyBCJCByExpress({consultId:this.clickItem,addressId:this.selectAddress.id}).then(res=>{
-                    if(this.res.code=="SUCCESS"){
-                        this.$router.push("payOnline?consultId="+tis.clickItem+"&doctorType=0)");
+                    if(res.data.code=="SUCCESS"){
+                        this.$router.push("payOnline?consultId="+this.clickItem+"&doctorType=0)");
                     }
                 })
 
@@ -283,8 +284,8 @@ export default {
     font-size: 12px;
 }
 .upload {
-    width:50px;
-    height:50px;
+    width:50px !important;
+    height:50px !important;
     border:1px dashed #ccc;
     cursor:pointer;  
 }

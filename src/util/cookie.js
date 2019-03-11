@@ -2,7 +2,7 @@ import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 let cookieConfig = {}
 //if(CookieDomain !== ''){
-  cookieConfig = { domain: document.domain } //path:'/',maxAge:365*24*60*60
+  cookieConfig = { domain: document.domain, path:'/'} //path:'/',maxAge:365*24*60*60
 //}
 
 export function saveCookie(name,value) {

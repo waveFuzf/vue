@@ -36,8 +36,8 @@ import { saveCookie, getCookie } from "@/util/cookie.js";
 export default {
   data() {
     return {
-      done:"",
-      undone:"",
+      done:0,
+      undone:0,
     };
   },
   components: {
@@ -57,8 +57,10 @@ export default {
     consultsInfo(){
       if(this.myInfo.userId){
         axion.getConsultsInfo({doctorType:1,token:getCookie("token"),userId:this.myInfo.userId}).then(res=>{
-        this.done=res.data.data.done;
-        this.undone=res.data.data.undone;
+        if(res.data.data){
+          this.done=res.data.data.done;
+          this.undone=res.data.data.undone;
+        }
       })
       }
       

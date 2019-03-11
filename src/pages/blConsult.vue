@@ -201,7 +201,7 @@ i {
   cursor: pointer;
 }
 .el-dialog__body {
-  padding: 0px 20px;
+  padding: 0px 20px !important;
 }
 .bcjc .el-dialog {
   height:500px;
