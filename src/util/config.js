@@ -1,6 +1,6 @@
 import Qs from 'qs'
 
-// const baseURL='http://localhost:8080'
+// const baseURL='http://129.204.205.30:8080'
 const baseURL = '/api'
 const objBase = {
     url: '/get',

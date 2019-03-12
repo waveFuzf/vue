@@ -29,7 +29,7 @@
 <script>
 import "@/assets/css/default.css";
 import axion from "@/util/http_url.js";
-import { saveCookie, getCookie } from "@/util/cookie.js";
+import { saveCookie, getCookie,removeCookie} from "@/util/cookie.js";
 export default {
   components: {
     dialogLogin: () => import("@/components/loginPage")
@@ -60,6 +60,8 @@ export default {
           if (d.status == 200) {
             this.$message.success("退出成功!");
             this.$router.push("/");
+            removeCookie("token");
+            this.isLogin=false;
           }
         });
     },

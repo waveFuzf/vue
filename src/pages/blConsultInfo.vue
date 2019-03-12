@@ -64,12 +64,14 @@
                   <el-col :span="20">
                     <el-form>
                       <el-form-item label="病理切片：" label-width="120px;">
+                        
                         <div
                           class="slides"
                           v-for="(item) in consultDetail.hzSlides"
                           :key="item.uuid"
-                        >
+                        > <viewer :images="consultDetail.hzSlides">
                           <img style="width:100px;height:100px;" :src="item.clientSlidePath">
+                          </viewer>
                         </div>
                       </el-form-item>
                     </el-form>
@@ -570,7 +572,7 @@ export default {
 }
 </style>
 
-<style scoped>
+<style>
 .module {
   margin-top: 10px;
   background-color: white;
@@ -604,5 +606,8 @@ li {
 }
 .el-input-number input {
   width:130px;
+}
+.viewer-footer {
+  display:none;
 }
 </style>

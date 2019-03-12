@@ -8,7 +8,10 @@
                 <i class="el-icon-plus avatar-uploader-icon" style="font-size:20px;margin:40px;"></i>
 		    </div>
             <div v-if="mailInfo.mailPdf&&consultStatus.consultStatus==3" class="upload floatRight" style="margin:10px;border:0px;">
-                <img :src="mailInfo.mailPdf" style="width:100px;height:100px;">
+                <viewer>
+                    <img :src="mailInfo.mailPdf" style="width:100px;height:100px;" key="快递单">
+	            </viewer>
+                
             </div>
         </div>
         <div class="background" v-if="doctorType==1">{{typeOneTags[consultStatus.consultStatus]}}</div>
