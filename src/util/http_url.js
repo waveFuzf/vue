@@ -50,7 +50,8 @@ const editBCJCByConsultId=(supplementInfo)=>postInfo("bldoctor/editBCJCByConsult
 const applyBCJCByExpress=(consultId,addressId)=>post("bldoctor/applyBCJCByExpress.htm",consultId,addressId);
 const getConsultCollection=(userId,pageNum)=>post("blinquiry/getConsultCollection.htm",userId,pageNum)
 const editMailInfo=(mailCode,mailCompany,address_id)=>post("bldoctor/editMailInfo.htm",mailCode,mailCompany,address_id);
-const getAddressByConsultId=(consultId,type)=>post("blinquiry/getAddressByConsultId.htm",consultId,type)
+const getAddressByConsultId=(consultId,type)=>post("blinquiry/getAddressByConsultId.htm",consultId,type);
+const adminGetConsultList=(form)=>post("blinquiry/adminGetConsultList.htm",form)
 export default {
     getAll,
     getByName,
@@ -95,5 +96,6 @@ export default {
     getConsultCollection,
     uploadExpress,
     editMailInfo,
-    getAddressByConsultId
+    getAddressByConsultId,
+    adminGetConsultList
 }

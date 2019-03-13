@@ -52,7 +52,7 @@ export default {
           saveCookie("token", d.data.data);
           if(d.data.message=="1"){
             console.log("我是管理员！");
-            this.$router.push("/homePage");
+            this.$router.push("/blControl?type=1");
             return;
           }
           this.$emit('closeDialog')

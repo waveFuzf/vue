@@ -124,32 +124,16 @@ const routerMap = [
         path: '/homePage',
         name: 'HomePage',
         meta: {
-            title: '移动会议'
+            title: '管理中心'
         },
         component: lazyload('HomePage'),
         children: [{
-            path: '/default',
-            name: 'default',
+            path: '/blControl',
+            name: '管理中心',
             meta: {
                 title: 'mady'
             },
-            component: lazyload('admin/default')
-        },
-        {
-            path: '/user',
-            name: 'user',
-            meta: {
-                title: 'mady'
-            },
-            component: lazyload('admin/userPage')
-        },
-        {
-            path: '/dept',
-            name: 'dept',
-            meta: {
-                title: 'mady'
-            },
-            component: lazyload('admin/department')
+            component: lazyload('admin/demo')
         }
     ]
     },

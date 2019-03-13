@@ -1,57 +1,44 @@
 <template>
   <div style="background-color:#f8f7f7;">
     <layout-header pagename="管理中心" :myInfo="myInfo" :isLogin="isLogin" @getUserInfo="getUserInfo"></layout-header>
-    <el-container>
-      <el-aside width="200px">
+    <el-container style="minHeight:804px;width:80%;margin:0 auto;">
+      <el-aside width="200px" style="height:100%;">
         <el-menu
-          default-active="2"
+          :default-active="stupid"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
-          background-color="#545c64"
-          text-color="#fff"
-          active-text-color="#ffd04b"
-        >
-          <el-submenu index="1">
+          router>
+          <el-submenu index="/blControl">
             <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>导航一</span>
-            </template>
-            <el-menu-item-group>
-              <template slot="title">分组一</template>
-              <el-menu-item index="1-1">选项1</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="1-3">选项3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="1-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="1-4-1">选项1</el-menu-item>
-            </el-submenu>
+              <span>病理管理</span>
+            </template >
+              <el-menu-item index="/blControl?type=1">未完成</el-menu-item>
+              <el-menu-item index="/blControl?type=2">已完成</el-menu-item>
+              <el-menu-item index="/blControl?type=3">已取消</el-menu-item>
           </el-submenu>
           <el-menu-item index="2">
-            <i class="el-icon-menu"></i>
-            <span slot="title">导航二</span>
+            <span slot="title">价格管理</span>
           </el-menu-item>
-          <el-menu-item index="3" disabled>
-            <i class="el-icon-document"></i>
-            <span slot="title">导航三</span>
+          <el-menu-item index="3">
+            <span slot="title">评价管理</span>
           </el-menu-item>
           <el-menu-item index="4">
-            <i class="el-icon-setting"></i>
-            <span slot="title">导航四</span>
+            <span slot="title">质控管理</span>
+          </el-menu-item>
+          <el-menu-item index="5">
+            <span slot="title">医师管理</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
       <el-container>
-        <el-header>Header</el-header>
-        <el-main>Main</el-main>
-        <el-footer>Footer</el-footer>
+        <el-main>
+            <router-view keep-alive></router-view>
+        </el-main>
       </el-container>
     </el-container>
 
-    <div style="background-color:#374266;height:50pxs;width:100%;"></div>
+    <div style="background-color:#374266;height:50px;margin-top:20px;width:100%;"></div>
   </div>
 </template>
 <script>
@@ -63,7 +50,8 @@ export default {
     return {
       activeIndex: "1",
       myInfo: {},
-      isLogin: false
+      isLogin: false,
+      stupid:"/blControl?type=1"
     };
   },
   mounted() {
