@@ -20,7 +20,7 @@
       </div>
     </div>
   </header>
-  <el-dialog :visible.sync="goLogin" width="30%">
+  <el-dialog :visible.sync="goLogin" width="430px">
   <dialog-login ref="dialogLogin" v-if="goLogin" :type='type' @closeDialog="closeDialog"></dialog-login>
   </el-dialog>  
 </div>

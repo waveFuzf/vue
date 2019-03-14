@@ -121,9 +121,15 @@
                       </div>
                     </el-form-item>
                     <el-form-item label="补充检查项：">{{form.immuneTag}}</el-form-item>
-                    <el-form-item label="初步判定：">{{bcjcRes.initialJudgement}}</el-form-item>
-                    <el-form-item label="备注：">{{bcjcRes.remarkDoctor}}</el-form-item>
-                  </el-form>
+                    <el-form-item v-if="consultDetail.supplementSlideType==1" label="初步判定：">{{bcjcRes.initialJudgement}}</el-form-item>
+                    <el-form-item v-if="consultDetail.supplementSlideType==1" label="备注：">{{bcjcRes.remarkDoctor}}</el-form-item>
+                    <el-form-item label="结果判定：" v-if="consultDetail.consultStatus==6" style="margin-top:10px;">
+                        {{bcjcForm.ultimateJudgement}}
+                    </el-form-item>
+                    <el-form-item label="补充意见：" v-if="consultDetail.consultStatus==6" style="margin-top:10px;">
+                        {{bcjcForm.supplymentaryOpinion}}
+                    </el-form-item>
+                    </el-form>
                 </el-col>
               </el-row>
             </div>

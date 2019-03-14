@@ -1,5 +1,5 @@
 <template>
-<el-dialog @close="chosedExpertFun" :visible.sync="childVisible" width="40%" title="选择专家" top="5vh">
+<el-dialog @close="chosedExpertFun" :visible.sync="childVisible" width="550px;" title="选择专家" top="5vh">
     <div>
         <div style="margin-top: -70px; margin-right: 40px;width:50%;float:right;">
             <el-input style="width: 100%" v-model.trim="expertName" placeholder="请输入专家姓名" @keyup.enter.native="searchExpertList">
@@ -7,7 +7,7 @@
         </div>
         <ul style="height:350px;overflow-y:scroll;margin:0;padding:0px;" class="scroll-ui" v-scroll="loadMore">
             
-            <li v-for="item in doctorsInfo" :key="item.userId" style="list-style:none;height:105px;">
+            <li v-for="item in doctorsInfo" :key="item.userId" style="list-style:none;height:125px;">
                 <div @click="chosedExpertFun(item)">
                     <el-col :span="4">
                         <img src="../assets/img/default.jpg" style="width:100%;" class="floatLeft">

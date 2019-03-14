@@ -6,7 +6,7 @@
     </div>
     <div class="caseConsultation-process-system">我们提供以下的服务</div>
     <div class="caseConsultation-process-eng">What We Offer</div>
-    <div style="width:100%;height:150px;">
+    <div style="width:100%;height:200px;">
         <div v-for="info in services" :key="info.index" class="floatLeft" style="width:20%;margin:2.5%;"> 
             <img class="floatLeft" :src="info.icon">
             <div class="floatLeft" style="width:60%;">

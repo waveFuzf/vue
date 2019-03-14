@@ -267,7 +267,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 .distpicker-address-wrapper select{
     padding: 0;
     font-size: 12px;

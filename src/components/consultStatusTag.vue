@@ -107,7 +107,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .upload {
     width:100px !important;
     height:100px !important;

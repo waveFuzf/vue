@@ -5,13 +5,10 @@
         <div>
             <dialog-select-expert  :canVisible="ifSelectExpert" @chosedExpertFun="chosedExpertFun" :caseTypeId="info.caseTypeId"></dialog-select-expert>
         </div> 
-        
-        <layout-header pagename="申请会诊" :myInfo="myInfo" :isLogin="isLogin" @getUserInfo="getUserInfo"></layout-header>
-        <el-row>
+            <layout-header pagename="申请会诊" :myInfo="myInfo" :isLogin="isLogin" @getUserInfo="getUserInfo"></layout-header>
             <el-col :span="15" :push="2" style="margin-top:50px;font-size:14px;padding-left:20px;">
                 首页 > 我的会诊列表 > 申请会诊
             </el-col>
-        </el-row>
         <el-row>
         <el-col :span="15" :push="2" style="margin-top:20px;background-color:white;border:1px solid #e6e6e6;padding-bottom:30px;">
         <div style="margin-left:2.5%;margin-top:40px;width:95%;float:left;">
@@ -158,7 +155,7 @@
                     <el-row>会诊信息</el-row>
 
                     <el-row>
-                        <el-col :xs="10" :sm="8" :lg="12">
+                        <el-col :xs="10" :sm="8" :lg="16">
                             <el-form-item label="会诊目的：" prop="purpose">
                                 <el-checkbox-group v-model="consultInfo.purpose">
                                     <el-checkbox v-for="item in purposes" :key="item.key" :label="item.key">{{item.value}}</el-checkbox>
@@ -200,7 +197,7 @@
         </div>
         
         </el-col>
-        <el-col :span="5" :push="3" style="margin-top:20px;background-color:white;border:1px solid #e6e6e6;padding:30px;color:#415b77;font-size:20px">
+        <el-col :span="5" :push="3" style="margin-top:20px;background-color:white;border:1px solid #e6e6e6;padding:30px;color:#415b77;">
 
              会诊流程
              <el-steps direction="vertical" :active="0" space="50px" style="margin-top:10px;">

@@ -191,7 +191,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .module {
   margin-top: 10px;
   background-color: white;
