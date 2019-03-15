@@ -45,7 +45,7 @@
 
 
             </el-col>
-            <el-col :span="6" :push="1" style="background-color:white;border:1px solid #e6e6e6;padding:30px;color:#415b77;font-size:20px">
+            <el-col :span="6" :push="1" style="background-color:white;border:1px solid #e6e6e6;padding:30px;color:#415b77;">
 
              会诊流程
              <el-steps direction="vertical" :active="1" space="50px" style="margin-top:10px;">

@@ -1,7 +1,7 @@
 import Qs from 'qs'
 
-const baseURL='http://129.204.205.30:8080'
-// const baseURL = '/api'
+// const baseURL='http://129.204.205.30:8080'
+const baseURL = '/api'
 const objBase = {
     url: '/get',
     method: 'get',

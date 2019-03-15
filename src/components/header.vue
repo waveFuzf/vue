@@ -8,7 +8,7 @@
         <img class="floatLeft" v-if="myInfo.photo!=null" :src="myInfo.photo" alt="头像">
         <img class="floatLeft" v-else src="../assets/img/default.jpg" alt="头像">
         <div style="font-size: 12px;margin-top:20px;float:left;color:#333;cursor:pointer;">
-          <span @click="$router.push('userCenter')">{{myInfo.name}}</span>
+          <span @click="myInfo.isSuper==1?$router.push('blControl?type=1'):$router.push('userCenter')">{{myInfo.name}}</span>
         </div>
         <el-button type="primary" size="mini" v-on:click="exit" style="margin-left:20px;margin-top:15px;">退出</el-button>
       </div>

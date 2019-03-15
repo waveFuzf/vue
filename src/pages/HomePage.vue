@@ -4,18 +4,19 @@
     <el-container style="minHeight:804px;width:80%;margin:0 auto;">
       <el-aside width="200px" style="height:100%;">
         <el-menu
-          :default-active="stupid"
+          :default-active="emmm"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
-          router>
+          router
+        >
           <el-submenu index="/blControl">
             <template slot="title">
               <span>病理管理</span>
-            </template >
-              <el-menu-item index="/blControl?type=1">未完成</el-menu-item>
-              <el-menu-item index="/blControl?type=2">已完成</el-menu-item>
-              <el-menu-item index="/blControl?type=3">已取消</el-menu-item>
+            </template>
+            <el-menu-item index="/blControl?type=1">未完成</el-menu-item>
+            <el-menu-item index="/blControl?type=2">已完成</el-menu-item>
+            <el-menu-item index="/blControl?type=3">已取消</el-menu-item>
           </el-submenu>
           <el-menu-item index="2">
             <span slot="title">价格管理</span>
@@ -33,7 +34,7 @@
       </el-aside>
       <el-container>
         <el-main>
-            <router-view keep-alive></router-view>
+          <router-view keep-alive></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -51,22 +52,24 @@ export default {
       activeIndex: "1",
       myInfo: {},
       isLogin: false,
-      stupid:"/blControl?type=1"
+      stupid: "/blControl?type=1",
+      emmm:null,
     };
   },
   mounted() {
+    this.emmm=this.$route.fullPath;
     this.getUserInfo();
   },
   components: {
     layoutHeader: () => import("@/components/header")
   },
   methods: {
-     handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      },
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
+    },
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    },
     getUserInfo() {
       var token = getCookie("token");
       if (token != null) {

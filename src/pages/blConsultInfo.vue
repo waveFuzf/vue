@@ -101,7 +101,7 @@
               </el-row>
             </div>
           </el-collapse-item>
-          <el-collapse-item v-if="[6,9].indexOf(consultDetail.consultStatus)>=0" name="3">
+          <el-collapse-item v-if="[6,9].indexOf(consultDetail.consultStatus)>=0 && !!consultDetail.supplementSlideType" name="3">
             <template slot="title">
               <i class="el-icon-document" style="margin-left:20px;">补充检查信息</i>
             </template>
@@ -141,6 +141,7 @@
           >
             <el-button v-if="[4].indexOf(consultDetail.consultStatus)>=0" @click="dialogInit">写诊断</el-button>
             <el-button v-else @click="expectDocBCJC">补充检查</el-button>
+            <el-button v-if="[4].indexOf(consultDetail.consultStatus)>=0 && !!!consultDetail.supplementSlideType" @click="backVisible=true;">无效病理?申请退回</el-button>
           </div>
           <div
             v-if="doctorType==0&&[6,8,9].indexOf(consultDetail.consultStatus)>=0"
@@ -261,6 +262,10 @@
       <bcjc-dialog ref="initDialog" :clickItem="clickItem" @successClose="successClose"></bcjc-dialog>
     </el-dialog>
 
+    <el-dialog title="退回申请" :visible.sync="backVisible">
+        <input type="textarea" :model="backReason">
+    </el-dialog>
+
     <el-dialog title="补充检查" :visible.sync="expectDocBcjc" width="40%">
       <el-form>
         <el-form-item label="结果判定：" label-width="100px" style="margin-top:10px;" required>
@@ -287,6 +292,8 @@ import "@/assets/css/iconfont.css";
 export default {
   data() {
     return {
+      backReason:null,
+      backVisible:false,
       slideEstimates: ["质量不合格", "质量基本合格", "质量合格", "质量优秀"],
       diagnosisEstimates: [
         "诊断不正确",
@@ -578,7 +585,7 @@ export default {
 }
 </style>
 
-<style>
+<style scoped>
 .module {
   margin-top: 10px;
   background-color: white;
@@ -602,7 +609,6 @@ li {
   margin-right: 10px;
   width: 100px;
   height: 100px;
-  background-color: red;
   margin-top: 10px;
 }
 .input-new-tag {

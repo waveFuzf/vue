@@ -53,6 +53,7 @@ const editMailInfo=(mailCode,mailCompany,address_id)=>post("bldoctor/editMailInf
 const getAddressByConsultId=(consultId,type)=>post("blinquiry/getAddressByConsultId.htm",consultId,type);
 const adminGetConsultList=(form)=>post("blinquiry/adminGetConsultList.htm",form);
 const confirmRecevie=(form)=>post("bladmin/confirmRecevie.htm",form);
+const getSlidesByConsultId=(consult_id)=>post("bladmin/getSlidesByConsultId.htm",consult_id);
 export default {
     getAll,
     getByName,
@@ -100,4 +101,5 @@ export default {
     getAddressByConsultId,
     adminGetConsultList,
     confirmRecevie,
+    getSlidesByConsultId
 }

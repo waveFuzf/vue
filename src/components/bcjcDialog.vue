@@ -305,7 +305,6 @@ export default {
     margin-right:10px;
     width:50px;
     height:50px;
-    background-color:red;
 }
 .fuzf label {
     width:132px;

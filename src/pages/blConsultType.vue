@@ -477,7 +477,6 @@ export default {
     margin-right:10px;
     width:100px;
     height:100px;
-    background-color:red;
 }
 .is-process{
     font-size: 14px;
