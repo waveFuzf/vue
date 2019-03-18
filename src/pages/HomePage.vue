@@ -18,16 +18,16 @@
             <el-menu-item index="/blControl?type=2">已完成</el-menu-item>
             <el-menu-item index="/blControl?type=3">已取消</el-menu-item>
           </el-submenu>
-          <el-menu-item index="2">
+          <el-menu-item index="/priceControl">
             <span slot="title">价格管理</span>
           </el-menu-item>
-          <el-menu-item index="3">
+          <el-menu-item index="/evaluateControl">
             <span slot="title">评价管理</span>
           </el-menu-item>
-          <el-menu-item index="4">
+          <el-menu-item index="/">
             <span slot="title">质控管理</span>
           </el-menu-item>
-          <el-menu-item index="5">
+          <el-menu-item index="/doctorsControl">
             <span slot="title">医师管理</span>
           </el-menu-item>
         </el-menu>

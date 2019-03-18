@@ -134,12 +134,24 @@
               </el-row>
             </div>
           </el-collapse-item>
+          <el-collapse-item name="5" v-if="consultDetail.consultStatus==6">
+              <template slot="title">
+                <i class="iconfont" style="margin-left:20px;font-size:14px;">&#xe61f;评价</i>
+              </template>
+              
+          </el-collapse-item>
+
+          <div v-if="doctorType==0&&consultDetail.consultStatus==4"
+            style="width:90%;padding:10px;margin:0 auto;">
+            <el-button @click="cancelVisible=true;">信息错误?申请取消.</el-button>
+
+          </div>
 
           <div
-            v-if="doctorType==1&&[4,9].indexOf(consultDetail.consultStatus)>=0"
+            v-if="doctorType==1&&[4,9,10].indexOf(consultDetail.consultStatus)>=0"
             style="width:90%;padding:10px;margin:0 auto;"
           >
-            <el-button v-if="[4].indexOf(consultDetail.consultStatus)>=0" @click="dialogInit">写诊断</el-button>
+            <el-button v-if="[4,10].indexOf(consultDetail.consultStatus)>=0" @click="dialogInit">写诊断</el-button>
             <el-button v-else @click="expectDocBCJC">补充检查</el-button>
             <el-button v-if="[4].indexOf(consultDetail.consultStatus)>=0 && !!!consultDetail.supplementSlideType" @click="backVisible=true;">无效病理?申请退回</el-button>
           </div>
@@ -262,8 +274,28 @@
       <bcjc-dialog ref="initDialog" :clickItem="clickItem" @successClose="successClose"></bcjc-dialog>
     </el-dialog>
 
-    <el-dialog title="退回申请" :visible.sync="backVisible">
-        <input type="textarea" :model="backReason">
+    <el-dialog title="退回申请" :visible.sync="backVisible" width="400px" class="back">
+        <el-form>
+            <el-form-item label="退回理由" label-width="70px" style="margin-top:10px;">
+                <el-input type="textarea" v-model="backReason"></el-input>
+            </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="backVisible = false">取 消</el-button>
+            <el-button type="primary" @click="backConfirm">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <el-dialog title="取消申请" :visible.sync="cancelVisible" width="400px" class="back">
+        <el-form>
+            <el-form-item label="取消理由" label-width="70px" style="margin-top:10px;">
+                <el-input type="textarea" v-model="cancelReason"></el-input>
+            </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="cancelVisible = false">取 消</el-button>
+            <el-button type="primary" @click="cancelConfirm">确 定</el-button>
+      </span>
     </el-dialog>
 
     <el-dialog title="补充检查" :visible.sync="expectDocBcjc" width="40%">
@@ -292,6 +324,8 @@ import "@/assets/css/iconfont.css";
 export default {
   data() {
     return {
+      cancelReason:"",
+      cancelVisible:false,
       backReason:null,
       backVisible:false,
       slideEstimates: ["质量不合格", "质量基本合格", "质量合格", "质量优秀"],
@@ -339,7 +373,8 @@ export default {
       clickItem: "",
       bcjcRes: {},
       activeNames: ["1", "2", "3"],
-      expectDocBcjc: false
+      expectDocBcjc: false,
+      backReason:'',
     };
   },
   components: {
@@ -355,6 +390,46 @@ export default {
     
   },
   methods: {
+    cancelConfirm(){
+        axion.consultCancelApply({consultId:this.consultId,reason:this.cancelReason}).then(res=>{
+            this.cancelVisible=false;
+            if(res.data.code=="SUCCESS"){
+                this.consultDetail.consultStatus=7;
+                this.$message({
+                    type: "info",
+                    message: `退回申请成功!`
+                });
+            }else {
+                this.$message({
+                    type: "info",
+                    message: res.data.message
+                });
+            }
+            
+
+        })
+
+    },
+    backConfirm(){
+        axion.consultReturnApply({consultId:this.consultId,reason:this.backReason}).then(res=>{
+            this.backVisible=false;
+            if(res.data.code="SUCCESS"){
+                this.consultDetail.consultStatus=10;
+                this.$message({
+                    type: "info",
+                    message: `退回申请成功,等待管理员同意!`
+                });
+            }else {
+                this.$message({
+                    type: "info",
+                    message: res.data.data
+                });
+            }
+            
+
+        })
+
+    },
     returnToEdit(){
       this.consultDetail.consultStatus==4?this.dialogVisible=true:this.expectDocBcjc=true;
       this.reportVisible=false;
@@ -583,9 +658,15 @@ export default {
 .report .el-dialog__body {
   padding: 0px 20px;
 }
+.back .el-dialog__body {
+  padding: 10px 20px;
+}
 </style>
 
 <style scoped>
+.back .el-dialog__body{
+    padding:0px 20px;
+}
 .module {
   margin-top: 10px;
   background-color: white;

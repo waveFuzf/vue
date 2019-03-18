@@ -49,7 +49,7 @@ export default {
       consults:[],
       loading:true,
       total:0,
-      consultStatus:['','待提交','待支付','待收货','待诊断','已退回','已诊断','已取消','待补充','待二次诊断'],
+      consultStatus:['','待提交','待支付','待收货','待诊断','已退回','已诊断','已取消','待补充','待二次诊断','待诊断'],
     };
   },
   components: {

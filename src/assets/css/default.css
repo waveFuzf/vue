@@ -72,12 +72,12 @@
 
   @font-face {
     font-family: 'iconfont';  /* project id 1064275 */
-    src: url('//at.alicdn.com/t/font_1064275_g4nangfphck.eot');
-    src: url('//at.alicdn.com/t/font_1064275_g4nangfphck.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_1064275_g4nangfphck.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_1064275_g4nangfphck.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1064275_g4nangfphck.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1064275_g4nangfphck.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_1064275_uaingy5huu.eot');
+    src: url('//at.alicdn.com/t/font_1064275_uaingy5huu.eot?#iefix') format('embedded-opentype'),
+    url('//at.alicdn.com/t/font_1064275_uaingy5huu.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1064275_uaingy5huu.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1064275_uaingy5huu.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1064275_uaingy5huu.svg#iconfont') format('svg');
   }
     .iconfont{
         font-family:"iconfont" !important;

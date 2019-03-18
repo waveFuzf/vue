@@ -54,6 +54,14 @@ const getAddressByConsultId=(consultId,type)=>post("blinquiry/getAddressByConsul
 const adminGetConsultList=(form)=>post("blinquiry/adminGetConsultList.htm",form);
 const confirmRecevie=(form)=>post("bladmin/confirmRecevie.htm",form);
 const getSlidesByConsultId=(consult_id)=>post("bladmin/getSlidesByConsultId.htm",consult_id);
+const consultReturnApply=(consultId,reason)=>post("blexpert/consultReturnApply.htm",consultId,reason)
+const isSettlement=(consult_id,type)=>post("bladmin/isSettlement.htm",consult_id,type);
+const backToUnDiagnose=(consult_id,type)=>post("bladmin/backToUnDiagnose.htm",consult_id,type);
+const consultCancelApply=(consultId,reason)=>post("blexpert/consultCancelApply.htm",consultId,reason)
+const selectPriceList=(priceTypeId)=>post("blprice/selectPriceList.htm",priceTypeId)
+const updatePriceList=(id,price)=>post("blprice/updatePriceList.htm",id,price)
+const addPriceList=(form)=>post("blprice/addPriceList.htm",form);
+const deletePriceConfig=(id)=>post("blprice/deletePriceConfig.htm",id)
 export default {
     getAll,
     getByName,
@@ -101,5 +109,13 @@ export default {
     getAddressByConsultId,
     adminGetConsultList,
     confirmRecevie,
-    getSlidesByConsultId
+    getSlidesByConsultId,
+    consultReturnApply,
+    backToUnDiagnose,
+    isSettlement,
+    consultCancelApply,
+    selectPriceList,
+    updatePriceList,
+    addPriceList,
+    deletePriceConfig
 }
