@@ -138,6 +138,19 @@
               <template slot="title">
                 <i class="iconfont" style="margin-left:20px;font-size:14px;">&#xe61f;评价</i>
               </template>
+              <el-form label-width="120px;">
+                  <el-form-item label="评价">
+                      <input>
+                  </el-form-item>
+
+                  <el-form-item>
+                      
+                  </el-form-item>
+
+
+
+
+              </el-form>
               
           </el-collapse-item>
 
