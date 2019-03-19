@@ -1,9 +1,26 @@
 <template>
     <div>
+       <el-row style="border-left:4px solid #409EFF;">
+            <span style="font-size:20px;color:#425b77;margin:20px;">搜索条件</span><br>
+        <el-row style="margin-top:20px;margin-left:30px;">
+            <el-date-picker v-model="form.beginTime" type="date" placeholder="起始日期">
+            </el-date-picker>
+            <el-date-picker v-model="form.endTime" type="date" placeholder="结束日期">
+            </el-date-picker>
+        </el-row>
+        <el-row style="margin-top:20px;margin-left:30px;">
+            <el-tabs v-model="form.activeName" style="float:left;width:240px;">
+                <el-tab-pane label="切片质量" name="1"></el-tab-pane>
+                <el-tab-pane label="初步诊断质量" name="2"></el-tab-pane>
+            </el-tabs>
+            <el-radio v-model="form.radio" label="1" style="line-height:40px;">按医院</el-radio>
+            <el-radio v-model="form.radio" label="2">按部位</el-radio>
+        </el-row>
+       </el-row>
        <el-table
           :data="consults"
           stripe
-          style="border:1px solid #cccdce;width:100%;height:290px;"
+          style="border:1px solid #cccdce;width:100%;height:290px;margin-top:20px;"
         >
           <el-table-column prop="consultNo" label="病理号" width="130"></el-table-column>
           <el-table-column prop="caseTypeName" label="类型" width="110"></el-table-column>

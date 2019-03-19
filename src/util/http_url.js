@@ -62,6 +62,10 @@ const selectPriceList=(priceTypeId)=>post("blprice/selectPriceList.htm",priceTyp
 const updatePriceList=(id,price)=>post("blprice/updatePriceList.htm",id,price)
 const addPriceList=(form)=>post("blprice/addPriceList.htm",form);
 const deletePriceConfig=(id)=>post("blprice/deletePriceConfig.htm",id)
+const applyDoctorEvaluate=(form)=>post("evaluate/applyDoctorEvaluate.htm",form);
+const selectEvaluateByConsultId=(consultId)=>post("evaluate/selectEvaluateByConsultId.htm",consultId);
+const evaluateShowToggle=(status,evaluateId)=>post("evaluate/evaluateShowToggle.htm",status,evaluateId);
+const selectQualityInfo=(form)=>post("blQuality/selectQualityInfo.htm",form)
 export default {
     getAll,
     getByName,
@@ -117,5 +121,9 @@ export default {
     selectPriceList,
     updatePriceList,
     addPriceList,
-    deletePriceConfig
+    deletePriceConfig,
+    applyDoctorEvaluate,
+    selectEvaluateByConsultId,
+    evaluateShowToggle,
+    selectQualityInfo
 }

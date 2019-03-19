@@ -110,7 +110,35 @@
               </el-row>
             </div>
           </el-collapse-item>
-          <el-collapse-item name="4" v-if="type!=3&&!(clickItem.consultStatus==6&&clickItem.isSettlement==1)">
+          <el-collapse-item name="4" v-if="clickItem.consultStatus==6">
+              <template slot="title">
+                <i class="iconfont" style="margin-left:20px;font-size:12px">&#xe61f;评价</i>
+              </template>
+              <div style="width:90%;margin-bottom:0px;">
+              <el-row>
+              <el-col>
+              <el-form label-width="120px">
+                  <el-form-item label="评价：">
+                      <span v-if="evaluate.evaluateText">{{evaluate.evaluateText}}</span>
+                      <span v-else>暂无任何评价</span>
+                  </el-form-item>
+
+                  <el-form-item label="评分：" v-if="evaluate.evaluateText">
+                      <div style="height:40px;"><span style="float:left;">整体性评价：</span><el-rate v-model="evaluate.evaluateWhole" show-text :texts=rates disabled></el-rate></div>
+                      <div style="height:40px;"><span style="float:left;">专业性评价：</span><el-rate v-model="evaluate.evaluateProfession" show-text :texts=rates disabled></el-rate></div>
+                      <div style="height:40px;"><span style="float:left;">及时性评价：</span><el-rate v-model="evaluate.evaluateIntime" show-text :texts=rates disabled></el-rate></div>
+                  </el-form-item>
+
+                  <el-form-item v-if="evaluate.evaluateText">
+                      <el-switch v-model="value" :active-text="value?'公开':'隐藏'"></el-switch>
+                  </el-form-item>
+              </el-form>
+              </el-col>
+              </el-row>
+              </div>
+              
+          </el-collapse-item>
+          <el-collapse-item name="5" v-if="type!=3&&!(clickItem.consultStatus==6&&clickItem.isSettlement==1)">
               <template slot="title">
                 <i class="iconfont" style="margin-left:20px;font-size:13px;">&#xe70f;操作</i>
               </template>
@@ -131,6 +159,8 @@ import "@/assets/css/default.css"
 export default {
     data(){
         return{
+            rates:["非常不满意", "不满意", "一般", "非常满意", "满意"],
+            evaluate:{},
             loading:true,
             successSlidesInfo:[],
             res:[],
@@ -139,6 +169,7 @@ export default {
             slideEstimates: ["质量不合格", "质量基本合格", "质量合格", "质量优秀"],
             diagnosisEstimates: ["诊断不正确","诊断基本正确","诊断完全正确","诊断不明确"],
             bcjcRes:[],
+            value:true,
         }
     },
     props:["clickItem","type"],
@@ -177,9 +208,20 @@ export default {
         },
         changeLoading(){
             this.loading=true;
+            if(this.value!=(this.evaluate.evaluateStatus==0?true:false)){
+                axion.evaluateShowToggle({status:this.value,evaluateId:this.evaluate.evaluate_id}).then(res=>{
+                    console.log("我变了");
+                })
+            }
         },
         init(){
            this.loading=true;
+           if(this.clickItem.consultStatus==6){
+                 axion.selectEvaluateByConsultId({consultId:this.clickItem.consult_id}).then(res=>{
+                    this.evaluate=res.data.data?res.data.data:{};
+                    this.value=this.evaluate.evaluateStatus==0?true:false;
+                 })
+            }
            axion.getDiagnoseDetail({consultId:this.clickItem.consult_id,token:getCookie("token")}).then(res=>{
                this.res=res.data.data;
                this.loading=false;
@@ -199,6 +241,11 @@ export default {
 }
 </script>
 <style scoped>
+.el-rate{
+    width:50%;
+    float: left;
+    line-height: 2.5;
+}
 .el-form-item {
     margin-bottom: 0px;
 }

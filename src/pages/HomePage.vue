@@ -21,10 +21,7 @@
           <el-menu-item index="/priceControl">
             <span slot="title">价格管理</span>
           </el-menu-item>
-          <el-menu-item index="/evaluateControl">
-            <span slot="title">评价管理</span>
-          </el-menu-item>
-          <el-menu-item index="/">
+          <el-menu-item index="/qualityControl">
             <span slot="title">质控管理</span>
           </el-menu-item>
           <el-menu-item index="/doctorsControl">

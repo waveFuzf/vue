@@ -144,12 +144,12 @@ const routerMap = [
             component: lazyload('admin/price')
         },
         {
-            path: '/evaluateControl',
+            path: '/qualityControl',
             name: '管理中心',
             meta: {
                 title: 'mady'
             },
-            component: lazyload('admin/evaluate')
+            component: lazyload('admin/quality')
         },
         {
             path: '/doctorsControl',

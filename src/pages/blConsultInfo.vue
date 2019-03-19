@@ -134,23 +134,38 @@
               </el-row>
             </div>
           </el-collapse-item>
-          <el-collapse-item name="5" v-if="consultDetail.consultStatus==6">
+          <el-collapse-item name="5" v-if="consultDetail.consultStatus==6 &&((doctorType==0)||(doctorType==1&&isEvaluate))">
               <template slot="title">
                 <i class="iconfont" style="margin-left:20px;font-size:14px;">&#xe61f;评价</i>
               </template>
-              <el-form label-width="120px;">
-                  <el-form-item label="评价">
-                      <input>
+              <div style="width:90%;padding:10px;margin:20px;margin-bottom:0px;">
+              <el-row>
+              <el-col>
+              <el-form label-width="120px">
+                  <el-form-item label="评价：">
+                      <el-input v-if="!isEvaluate" type="textarea" :rows="4" placeholder="请输入内容" v-model="evaluate.evaluateText" style="width: 500px;"> </el-input>
+                      <span v-else>{{evaluate.evaluateText}}</span>
+                  </el-form-item>
+
+                  <el-form-item label="评分：">
+                      <div style="height:40px;"><span style="float:left;">整体性评价：</span><el-rate v-model="evaluate.evaluateWhole" show-text :texts=rates :disabled="isEvaluate"></el-rate></div>
+                      <div style="height:40px;"><span style="float:left;">专业性评价：</span><el-rate v-model="evaluate.evaluateProfession" show-text :texts=rates :disabled="isEvaluate"></el-rate></div>
+                      <div style="height:40px;"><span style="float:left;">及时性评价：</span><el-rate v-model="evaluate.evaluateIntime" show-text :texts=rates :disabled="isEvaluate"></el-rate></div>
                   </el-form-item>
 
                   <el-form-item>
-                      
-                  </el-form-item>
+                      <el-button @click="evaluateConfirm" v-if="!isEvaluate">
+                          提交
+                      </el-button>
 
+                  </el-form-item>
 
 
 
               </el-form>
+              </el-col>
+              </el-row>
+              </div>
               
           </el-collapse-item>
 
@@ -337,6 +352,14 @@ import "@/assets/css/iconfont.css";
 export default {
   data() {
     return {
+      isEvaluate:false,
+      rates:["非常不满意", "不满意", "一般", "非常满意", "满意"],
+      evaluate:{
+          evaluateWhole:0,
+          evaluateProfession:0,
+          evaluateIntime:0,
+          evaluateText:"",
+      },
       cancelReason:"",
       cancelVisible:false,
       backReason:null,
@@ -403,6 +426,26 @@ export default {
     
   },
   methods: {
+    evaluateConfirm(){
+        this.evaluate.consultId=this.consultId;
+        this.evaluate.type=0;
+        axion.applyDoctorEvaluate(this.evaluate).then(res=>{
+            if(res.data.code=="SUCCESS"){
+               this.$message({
+                    type: "info",
+                    message: `评价成功!`
+                });
+                this.isEvaluate=true;
+            }else {
+                this.$message({
+                    type: "info",
+                    message: res.data.message
+                });
+            }
+            
+        });
+
+    },
     cancelConfirm(){
         axion.consultCancelApply({consultId:this.consultId,reason:this.cancelReason}).then(res=>{
             this.cancelVisible=false;
@@ -614,6 +657,14 @@ export default {
           this.consultDetail = res.data.data;
           this.patientInfo = this.consultDetail.consultPatient;
           this.expectDoc = this.consultDetail.doctors[1];
+          if(this.consultDetail.consultStatus==6){
+              axion.selectEvaluateByConsultId({consultId:this.consultId}).then(res=>{
+                  if(res.data.data){
+                      this.isEvaluate=true;
+                      this.evaluate=res.data.data;
+                  }
+              })
+          }
           if (([6, 8, 9].indexOf(this.consultDetail.consultStatus) >= 0)||(this.consultDetail.supplementSlideType==2)) {
             axion
               .getDiagnoseDetail({
@@ -673,6 +724,11 @@ export default {
 }
 .back .el-dialog__body {
   padding: 10px 20px;
+}
+.el-rate{
+    width:50%;
+    float: left;
+    line-height: 2.5;
 }
 </style>
 
