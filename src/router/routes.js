@@ -158,6 +158,14 @@ const routerMap = [
                 title: 'mady'
             },
             component: lazyload('admin/doctors')
+        },
+        {
+            path: '/hospitalControl',
+            name: '管理中心',
+            meta: {
+                title: 'mady'
+            },
+            component: lazyload('admin/hospital')
         }
     ]
     },

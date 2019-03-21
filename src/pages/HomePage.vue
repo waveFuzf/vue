@@ -27,6 +27,9 @@
           <el-menu-item index="/doctorsControl">
             <span slot="title">医师管理</span>
           </el-menu-item>
+          <el-menu-item index="/hospitalControl">
+            <span slot="title">医院管理</span>
+          </el-menu-item>
         </el-menu>
       </el-aside>
       <el-container>

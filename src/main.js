@@ -6,7 +6,6 @@ import 'element-ui/lib/theme-chalk/index.css';
 import AgoraRTC from 'agora-rtc-sdk';
 import Viewer from 'v-viewer';
 import 'viewerjs/dist/viewer.css';
-
 //Vue.use(Viewer) 默认配置写法
 Vue.use(Viewer, {
     defaultOptions: {

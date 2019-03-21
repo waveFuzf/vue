@@ -51,7 +51,6 @@ export default {
           }
           saveCookie("token", d.data.data);
           if(d.data.message=="1"){
-            console.log("我是管理员！");
             this.$router.push("/blControl?type=1");
             return;
           }
@@ -62,8 +61,22 @@ export default {
           if (d.data.data == null) {
             this.$message.error(d.data.message);
             return;
+          }else {
+            this.$message.success("注册成功,登陆中...");
+            axion.userLogin(this.setLoginPrams).then(d => {
+            if (d.data.data == null) {
+                this.$message.error("登录失败,请联系管理员！");
+                return;
+            }
+            saveCookie("token", d.data.data);
+            if(d.data.message=="1"){
+                this.$router.push("/blControl?type=1");
+                return;
+            }
+            this.$emit('closeDialog')
+            });
           }
-          this.type = !this.type;
+          
         });
       }
     }

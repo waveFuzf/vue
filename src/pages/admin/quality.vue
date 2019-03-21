@@ -19,9 +19,10 @@
         </el-row>
         <el-row style="font-size:14px;color:#425b77;margin-top:20px;line-height:28px;">
             <span>共有 <span style="color:#409EFF;">{{res.length}} </span>项</span>
-            <el-button style="float:right;" size="mini">导出Excel</el-button>
+            <el-button style="float:right;" size="mini" @click="exportExcel">导出Excel</el-button>
         </el-row>
         <el-table
+          id="out-table"
           v-loading="loading"
           :data="res"
           stripe
@@ -47,6 +48,8 @@
 <script>
 import axion from "@/util/http_url.js";
 import { saveCookie, getCookie } from "@/util/cookie.js";
+import FileSaver from 'file-saver'
+import XLSX from 'xlsx'
 export default {
     components: {
        
@@ -55,7 +58,7 @@ export default {
         selectForm:{
             handler(){
                 if(!!this.selectForm.beginTime==!!this.selectForm.endTime){
-                                  this.selectQualityInfo();
+                    this.selectQualityInfo();
                 }
             },
             deep:true,
@@ -83,6 +86,18 @@ export default {
          this.selectQualityInfo();
      },
      methods:{
+         exportExcel () {
+         var wb = XLSX.utils.table_to_book(document.querySelector('#out-table'))
+         var wbout = XLSX.write(wb, { bookType: 'xlsx', bookSST: true, type: 'array' })
+         try {
+             var fileName=this.selectForm.activeName=='1'?"远程病理切片质控报告":"远程病理初诊质控报告";
+             if(!!this.selectForm.beginTime&&!!this.selectForm.endTime){
+                 fileName=fileName+this.selectForm.beginTime+"至"+this.selectForm.endTime;
+             }
+             FileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), fileName+'.xlsx')
+         } catch (e) { if (typeof console !== 'undefined') console.log(e, wbout) }
+         return wbout
+        },
          getPercent(num){
            return (Math.round(num / this.count * 10000) / 100.00)+"%";  
          },

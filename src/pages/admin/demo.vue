@@ -9,18 +9,16 @@
             </el-date-picker>
         </el-row>
         <el-row style="margin-top:20px;margin-left:30px;">
-            <el-tabs v-model="form.activeName" style="float:left;width:240px;">
-                <el-tab-pane label="切片质量" name="1"></el-tab-pane>
-                <el-tab-pane label="初步诊断质量" name="2"></el-tab-pane>
-            </el-tabs>
-            <el-radio v-model="form.radio" label="1" style="line-height:40px;">按医院</el-radio>
-            <el-radio v-model="form.radio" label="2">按部位</el-radio>
+            <el-radio v-model="form.radio" label="300" style="line-height:40px;width:40px;">全部</el-radio>
+            <el-radio v-model="form.radio" label="301" style="width:40px;">常规</el-radio>
+            <el-radio v-model="form.radio" label="302" style="width:40px;">细胞</el-radio>
+            <el-radio v-model="form.radio" label="303" style="width:40px;">冰冻</el-radio>
         </el-row>
        </el-row>
        <el-table
           :data="consults"
           stripe
-          style="border:1px solid #cccdce;width:100%;height:290px;margin-top:20px;"
+          style="border:1px solid #cccdce;width:910px;height:290px;margin-top:20px;"
         >
           <el-table-column prop="consultNo" label="病理号" width="130"></el-table-column>
           <el-table-column prop="caseTypeName" label="类型" width="110"></el-table-column>
@@ -55,6 +53,7 @@
 <script>
 import axion from "@/util/http_url.js";
 import { saveCookie, getCookie } from "@/util/cookie.js";
+import "@/assets/css/default.css";
 export default {
     components:{
         confirmReceive: () => import("@/components/confirmReceive"),
@@ -73,6 +72,7 @@ export default {
                endTime:null,
                pageSize:10,
                pageNum:1,
+               radio:"300",
            },
            watchVisible:false,
         }       
@@ -81,6 +81,13 @@ export default {
         $route:function(){
             this.form.statusType=this.$route.query.type;
             this.adminGetConsultList();
+        },
+        form:{
+            handler(){
+                this.adminGetConsultList();
+            },
+            deep:true,
+            immediate:true,
         }
     },
      mounted() {

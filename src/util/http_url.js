@@ -18,7 +18,7 @@ const updateUserInfo = (token, userInfo) => postInfo("/userInfo?token=" + token,
 const getUserInfo = (token) => post("/getMyInfo", token);
 const getUserCount = (token) => post("/getUserCount", token);
 const getUserBynameCount = (token) => post("/countUsersByName", token);
-const uploadUserExcel = (file) => upload('/importUserList?token='+token, file);
+const uploadUserExcel = (file) => upload('bladmin/importUserList.htm', file);
 const getDeptCount = (token) => post("/department/getDeptCount", token);
 const getDept=(token,pageNo)=>post("department/getDept",token,pageNo);
 const getDirectors=(token)=>post("/getDirectors",token);
@@ -65,7 +65,11 @@ const deletePriceConfig=(id)=>post("blprice/deletePriceConfig.htm",id)
 const applyDoctorEvaluate=(form)=>post("evaluate/applyDoctorEvaluate.htm",form);
 const selectEvaluateByConsultId=(consultId)=>post("evaluate/selectEvaluateByConsultId.htm",consultId);
 const evaluateShowToggle=(status,evaluateId)=>post("evaluate/evaluateShowToggle.htm",status,evaluateId);
-const selectQualityInfo=(form)=>post("blQuality/selectQualityInfo.htm",form)
+const selectQualityInfo=(form)=>post("blQuality/selectQualityInfo.htm",form);
+const getHospitals=(hospitalName)=>post("bladmin/getHospitals.htm",hospitalName);
+const deleteHospital=(hospitalId)=>post("bladmin/deleteHospital.htm",hospitalId);
+const saveHospital=(hzHospital)=>postInfo("bladmin/saveHospital.htm",hzHospital);
+const updateHospital=(hzHospital)=>postInfo("bladmin/updateHospital.htm",hzHospital);
 export default {
     getAll,
     getByName,
@@ -125,5 +129,9 @@ export default {
     applyDoctorEvaluate,
     selectEvaluateByConsultId,
     evaluateShowToggle,
-    selectQualityInfo
+    selectQualityInfo,
+    getHospitals,
+    deleteHospital,
+    saveHospital,
+    updateHospital
 }
