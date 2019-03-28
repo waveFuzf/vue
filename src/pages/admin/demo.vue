@@ -66,7 +66,6 @@ export default {
            consultStatus:['','待提交','待支付','待收货','待诊断','已退回','已诊断','已取消','待补充','待二次诊断','申请退回','申请取消'],
            consults:[],
            form:{
-               hospitalId:null,
                statusType:null,
                startTime:null,
                endTime:null,

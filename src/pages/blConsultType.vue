@@ -9,7 +9,7 @@
             <el-col :span="15" :push="2" style="margin-top:50px;font-size:14px;padding-left:20px;">
                 首页 > 我的会诊列表 > 申请会诊
             </el-col>
-        <el-row>
+        <el-row style="min-height:550px;">
         <el-col :span="15" :push="2" style="margin-top:20px;background-color:white;border:1px solid #e6e6e6;padding-bottom:30px;">
         <div style="margin-left:2.5%;margin-top:40px;width:95%;float:left;">
             <div class="floatLeft" :class="{done:done==1}">
