@@ -27,7 +27,7 @@
           <el-menu-item index="/doctorsControl">
             <span slot="title">医师管理</span>
           </el-menu-item>
-          <el-menu-item index="/hospitalControl">
+          <el-menu-item index="/hospitalControl" v-if="!myInfo.hospitalId">
             <span slot="title">医院管理</span>
           </el-menu-item>
         </el-menu>

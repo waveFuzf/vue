@@ -3,9 +3,9 @@
        <el-row style="border-left:4px solid #409EFF;">
             <span style="font-size:20px;color:#425b77;margin:20px;">搜索条件</span><br>
         <el-row style="margin-top:20px;margin-left:30px;">
-            <el-date-picker v-model="form.beginTime" type="date" placeholder="起始日期">
+            <el-date-picker v-model="form.startTime" type="date" placeholder="起始日期" value-format=" yyyy-MM-dd" format="yyyy-MM-dd">
             </el-date-picker>
-            <el-date-picker v-model="form.endTime" type="date" placeholder="结束日期">
+            <el-date-picker v-model="form.endTime" type="date" placeholder="结束日期" value-format=" yyyy-MM-dd" format="yyyy-MM-dd">
             </el-date-picker>
         </el-row>
         <el-row style="margin-top:20px;margin-left:30px;">
@@ -79,11 +79,24 @@ export default {
     watch:{
         $route:function(){
             this.form.statusType=this.$route.query.type;
-            this.adminGetConsultList();
         },
         form:{
             handler(){
-                this.adminGetConsultList();
+                console.log(this.form)
+                if((!!this.form.startTime==!!this.form.endTime)&&this.form.statusType){
+                let val = {
+                    statusType: this.form.statusType,
+                    startTime: this.form.startTime,
+                    endTime: this.form.endTime,
+                    pageSize:10,
+                    pageNum:1,
+                    radio:this.form.radio,
+                }
+                val.startTime=val.startTime?val.startTime+" 00:00:00":val.startTime;
+                val.endTime=val.endTime?val.endTime+" 23:59:59":val.endTime;
+                // debugger;
+                this.adminGetConsultList(val);
+                }
             },
             deep:true,
             immediate:true,
@@ -91,13 +104,12 @@ export default {
     },
      mounted() {
         this.form.statusType=this.$route.query.type;
-        this.adminGetConsultList();
      },
      methods:{
-         adminGetConsultList(){
+         adminGetConsultList(val){
             this.watchVisible=false;
             this.confirmVisible=false;
-            axion.adminGetConsultList(this.form).then(res=>{
+            axion.adminGetConsultList(val).then(res=>{
             this.consults=res.data.data;
         });
          },
