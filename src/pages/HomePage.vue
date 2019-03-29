@@ -18,7 +18,7 @@
             <el-menu-item index="/blControl?type=2">已完成</el-menu-item>
             <el-menu-item index="/blControl?type=3">已取消</el-menu-item>
           </el-submenu>
-          <el-menu-item index="/priceControl">
+          <el-menu-item index="/priceControl" v-if="!myInfo.hospitalId"> 
             <span slot="title">价格管理</span>
           </el-menu-item>
           <el-menu-item index="/qualityControl">

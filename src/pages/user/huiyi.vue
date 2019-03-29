@@ -8,8 +8,8 @@
         <span>{{myInfo.position}}</span>
         <span>{{myInfo.department}}</span><br><br>
         <span>{{myInfo.hosipitalName}}</span>
-        <span>擅长：{{myInfo.description}}</span>
-        <el-rate v-model="myInfo.userScore" disabled show-score text-color="#ff9900" score-template="{value}"></el-rate>
+        <span>擅长：{{myInfo.description?myInfo.description:"暂无擅长"}}</span>
+        <el-rate v-if="myInfo.userScore" v-model="myInfo.userScore" disabled show-score text-color="#ff9900" score-template="{value}"></el-rate>
       </div>
     </el-col>
     <el-col :span="10" :push="2" style="margin-top:20px;height:280px;">

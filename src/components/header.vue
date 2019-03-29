@@ -4,7 +4,7 @@
     <div style="width:80%;margin:0 auto;padding-top:20px;">
       <img class="floatLeft" src="../assets/img/icon-font.png" style="height:50px;">
       <div class="title">{{pagename}}</div>
-      <div v-if="isLogin" class="login-yes floatRight" style="margin-right:100px;width:200px;">
+      <div v-if="isLogin" class="login-yes floatRight" style="margin-right:100px;width:250px;">
         <img class="floatLeft" v-if="myInfo.photo!=null" :src="myInfo.photo" alt="头像">
         <img class="floatLeft" v-else src="../assets/img/default.jpg" alt="头像">
         <div style="font-size: 12px;margin-top:20px;float:left;color:#333;cursor:pointer;">
@@ -12,7 +12,7 @@
         </div>
         <el-button type="primary" size="mini" v-on:click="exit" style="margin-left:20px;margin-top:15px;">退出</el-button>
       </div>
-      <div v-else class="login-no floatRight" style="margin-right:100px;width:200px;">
+      <div v-else class="login-no floatRight" style="margin-right:100px;width:250px;">
           <img class="floatLeft" src="../assets/img/default.jpg" alt="头像">
           <div style="font-size: 12px;margin-top:20px;float:left;color:#333;">
           &nbsp;<a @click="showLoginOrSign(true)">登录</a>&nbsp;|&nbsp;<a @click="showLoginOrSign(false)">注册</a>&nbsp;

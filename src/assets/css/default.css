@@ -35,6 +35,15 @@
     position: relative;
   }
 
+  .caseConsultation-process-img {
+    background: url("../img/process_img.png") no-repeat center top;
+    height: 200px;
+    /* margin: 50px; */
+    width: 100%;
+    /* padding-left: 366px; */
+    /* padding-right: 366px; */
+    /* margin: 0 auto; */
+  }
   .caseConsultation-procedure-div button {
     position: absolute;
     width: 80px;

@@ -18,35 +18,18 @@
 
     <div class="caseConsultation-process-system">最优秀的专家队伍</div>
     <div class="caseConsultation-process-eng">Experts</div>
-    <div style="width:100%;height:450px;">
+    <div style="width:100%;height:250px;">
         <doctor-info v-for="item in doctorsInfo" :doctorInfo="item" :key="item.index"></doctor-info>
     </div>
+
+    <div class="caseConsultation-process-system">会诊流程</div>
+    <div class="caseConsultation-process-eng">Process</div>
+    <div class="caseConsultation-process-img">
+    </div>
+
+    <div style="background-color:#374266;height:50px;margin-top:20px;width:100%;"></div>
     
-    <!-- <main style="margin-left:200px;margin-top:50px;height:100%;">
-      <el-col :span="4">
-        <el-menu default-active="/userHomePage/huiyi" class="el-menu-vertical-demo" router>
-          <el-menu-item index="/userHomePage/huiyi">
-            <i class="iconfont icon-huiyi"></i>
-            <span slot="title">我的会议</span>
-          </el-menu-item>
-          <el-menu-item index="/userHomePage/jilu">
-            <i class="iconfont icon-jilu"></i>
-            <span slot="title">会议记录</span>
-          </el-menu-item>
-          <el-menu-item index="/userHomePage/shenqing">
-            <i class="iconfont icon-shenqing"></i>
-            <span slot="title">申请会议</span>
-          </el-menu-item>
-          <el-menu-item index="/userHomePage/shezhi">
-            <i class="iconfont icon-shezhi"></i>
-            <span slot="title">我的设置</span>
-          </el-menu-item>
-        </el-menu>
-      </el-col>
-      <el-col :span="12">
-        <router-view keep-alive :myInfo="myInfo"></router-view>
-      </el-col>
-    </main> -->
+    
   </div>
 </template>
 
@@ -66,6 +49,11 @@ export default {
       doctorsInfo:[],
       pagename: "个人中心",
       isLogin:false,
+      progress:[{icon:require("../assets/img/icon-process1.png"),title:"收集患者病例资料"},
+                {icon:require("../assets/img/icon-process2.png"),title:"提交申请并支付"},
+                {icon:require("../assets/img/icon-process3.png"),title:"在线提交数字切片/寄送切片"},
+                {icon:require("../assets/img/icon-process4.png"),title:"会诊专家阅片并且发报告"}
+      ],
       services:[{icon:require("../assets/img/icon-process1.png"),title:"自由申请资格",introduce:"用户自行在平台注册，认证通过后即可向不同级别专家发起会诊申请"},
                 {icon:require("../assets/img/icon-process2.png"),title:"快速入驻成专家",introduce:"名医个人：以个人身份提交申请， 审核通过后即可成为自由执业专家 名医团队：以团体身份提交申请， 审核通过后即可成为会诊专家团队"},
                 {icon:require("../assets/img/icon-process3.png"),title:"免费数字化服务",introduce:"寄送切片会诊的用户，我们将返回给您高年资专家签名报告和免费数字化服务"},

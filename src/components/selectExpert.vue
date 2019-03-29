@@ -1,5 +1,5 @@
 <template>
-<el-dialog @close="chosedExpertFun" :visible.sync="childVisible" width="550px;" title="选择专家" top="5vh">
+<el-dialog @close="chosedExpertFun" :visible.sync="childVisible" width="550px" title="选择专家" top="5vh">
     <div>
         <div style="margin-top: -70px; margin-right: 40px;width:50%;float:right;">
             <el-input style="width: 100%" v-model.trim="expertName" placeholder="请输入专家姓名" @keyup.enter.native="searchExpertList">
@@ -16,7 +16,7 @@
                         <span style="font-weight:bold;">{{item.name}}&nbsp;&nbsp;</span>
                         <span>{{item.position}}&nbsp;&nbsp;</span>
                         <span>{{item.hospitalName}}&nbsp;&nbsp;</span><br><br>
-                        <span>擅长：{{item.description}}</span>
+                        <span>擅长：{{item.description?item.description:"暂无擅长信息"}}</span>
                     </el-col>
                     <el-col :span="4" style="margin-top:20px;">
                         <span style="color:#ff9948;font-size:20px;">￥{{(item.price/100).toFixed(2)}}</span><br><br>
