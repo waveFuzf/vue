@@ -2,7 +2,7 @@
 <div style="background-color:white;">
   <header class="header" style="height:100px">
     <div style="width:80%;margin:0 auto;padding-top:20px;">
-      <img class="floatLeft" src="../assets/img/icon-font.png" style="height:50px;">
+      <img class="floatLeft" src="../assets/img/icon-font.png" style="height:50px;cursor:pointer;" @click="$router.push('/')">
       <div class="title">{{pagename}}</div>
       <div v-if="isLogin" class="login-yes floatRight" style="margin-right:100px;width:250px;">
         <img class="floatLeft" v-if="myInfo.photo!=null" :src="myInfo.photo" alt="头像">

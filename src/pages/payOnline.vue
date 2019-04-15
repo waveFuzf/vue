@@ -48,12 +48,15 @@
             <el-col :span="6" :push="1" style="background-color:white;border:1px solid #e6e6e6;padding:30px;color:#415b77;">
 
              会诊流程
-             <el-steps direction="vertical" :active="1" space="50px" style="margin-top:10px;">
-                <el-step title="填写会诊申请单"></el-step>
-                <el-step title="线上支付会诊费用"></el-step>
-                <el-step title="专家阅片并编辑诊断意见"></el-step>
-                <el-step title="打印报告"></el-step>
-            </el-steps>
+             <div style="margin-top:20px;">
+                <img src="../assets/img/step2.png" style="float:left;"/>
+                <div style="margin-left:20px;float:left;">
+                <p style="margin-top:5px;font-size:14px;">填写会诊申请单</p>
+                <p style="margin-top:45px;font-size:12px;">线上支付会诊费用</p>
+                <p style="margin-top:50px;font-size:12px;">专家阅片并编辑诊断意见</p>
+                <p style="margin-top:48px;font-size:12px;">打印报告</p>
+                </div>
+             </div>
         </el-col>
         </el-row>
         <div style="background-color:#374266;height:50px;margin-top:20px;width:100%;"></div>

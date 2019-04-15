@@ -9,7 +9,7 @@
             <el-col :span="15" :push="2" style="margin-top:50px;font-size:14px;padding-left:20px;">
                 首页 > 我的会诊列表 > 申请会诊
             </el-col>
-        <el-row style="min-height:550px;">
+        <el-row style="min-height:780px;">
         <el-col :span="15" :push="2" style="margin-top:20px;background-color:white;border:1px solid #e6e6e6;padding-bottom:30px;">
         <div style="margin-left:2.5%;margin-top:40px;width:95%;float:left;">
             <div class="floatLeft" :class="{done:done==1}">
@@ -200,12 +200,15 @@
         <el-col :span="5" :push="3" style="margin-top:20px;background-color:white;border:1px solid #e6e6e6;padding:30px;color:#415b77;">
 
              会诊流程
-             <el-steps direction="vertical" :active="0" space="50px" style="margin-top:10px;">
-                <el-step title="填写会诊申请单"></el-step>
-                <el-step title="线上支付会诊费用"></el-step>
-                <el-step title="专家阅片并编辑诊断意见"></el-step>
-                <el-step title="打印报告"></el-step>
-            </el-steps>
+             <div style="margin-top:20px;">
+                <img src="../assets/img/step1.png" style="float:left;"/>
+                <div style="margin-left:20px;float:left;">
+                <p style="margin-top:5px;font-size:14px;">填写会诊申请单</p>
+                <p style="margin-top:45px;font-size:12px;">线上支付会诊费用</p>
+                <p style="margin-top:50px;font-size:12px;">专家阅片并编辑诊断意见</p>
+                <p style="margin-top:48px;font-size:12px;">打印报告</p>
+                </div>
+             </div>
         </el-col>
         </el-row>
         <input type="file" name="file" id="file" style="display: none;" @change='uploads'>
