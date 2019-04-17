@@ -63,13 +63,14 @@ const updatePriceList=(id,price)=>post("blprice/updatePriceList.htm",id,price)
 const addPriceList=(form)=>post("blprice/addPriceList.htm",form);
 const deletePriceConfig=(id)=>post("blprice/deletePriceConfig.htm",id)
 const applyDoctorEvaluate=(form)=>post("evaluate/applyDoctorEvaluate.htm",form);
-const selectEvaluateByConsultId=(consultId)=>post("evaluate/selectEvaluateByConsultId.htm",consultId);
+const selectEvaluateByConsultId=(consultId,userId,type)=>post("evaluate/selectEvaluateByConsultId.htm",consultId,userId,type);
 const evaluateShowToggle=(status,evaluateId)=>post("evaluate/evaluateShowToggle.htm",status,evaluateId);
 const selectQualityInfo=(form)=>post("blQuality/selectQualityInfo.htm",form);
 const getHospitals=(hospitalName)=>post("bladmin/getHospitals.htm",hospitalName);
 const deleteHospital=(hospitalId)=>post("bladmin/deleteHospital.htm",hospitalId);
 const saveHospital=(hzHospital)=>postInfo("bladmin/saveHospital.htm",hzHospital);
 const updateHospital=(hzHospital)=>postInfo("bladmin/updateHospital.htm",hzHospital);
+const getEvaluateById=(doctorId)=>post("evaluate/selectEvaluateById.htm",doctorId);
 export default {
     getAll,
     getByName,
@@ -133,5 +134,6 @@ export default {
     getHospitals,
     deleteHospital,
     saveHospital,
-    updateHospital
+    updateHospital,
+    getEvaluateById
 }

@@ -1,15 +1,9 @@
 <template>
   <div style="background-color:#f8f7f7;">
     <layout-header pagename="管理中心" :myInfo="myInfo" :isLogin="isLogin" @getUserInfo="getUserInfo"></layout-header>
-    <el-container style="minHeight:804px;width:80%;margin:0 auto;">
-      <el-aside width="200px" style="height:100%;">
-        <el-menu
-          :default-active="emmm"
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
-          router
-        >
+    <el-container style="minHeight:804px;margin:0 auto;">
+      <el-aside width="200px" style="minHeight:814px;background-color:white;">
+        <el-menu :default-active="emmm" class="el-menu-vertical-demo" style="border:none;" @open="handleOpen" @close="handleClose" router>
           <el-submenu index="/blControl">
             <template slot="title">
               <span>病理管理</span>
@@ -32,14 +26,14 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      <el-container>
+      <el-container style="background-color:white;margin-left:10px;margin-top:10px;">
         <el-main>
           <router-view keep-alive></router-view>
         </el-main>
       </el-container>
     </el-container>
 
-    <div style="background-color:#374266;height:50px;margin-top:20px;width:100%;"></div>
+    <div style="background-color:#374266;height:50px;width:100%;"></div>
   </div>
 </template>
 <script>
