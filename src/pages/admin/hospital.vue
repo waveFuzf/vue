@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-row style="width:800px;">
-            <el-button style="width:10%;float:right;" type="primary" @click="editHospital=true;"><i class="iconfont">&#xe61e;</i>&nbsp;&nbsp;新增</el-button>
+            <el-button style="width:15%;float:right;" type="primary" @click="dosth"><i class="iconfont">&#xe61e;</i>&nbsp;&nbsp;新增</el-button>
         </el-row>
         <el-row v-for="(item,index) in hospitals" :key="item.hohospitalId" style="width:800px;height:120px;border-bottom:1px solid #cec5c5;">
             <el-col :span="4" style="margin:20px;">
@@ -105,6 +105,16 @@ export default {
          
      },
      methods:{
+         dosth(){
+             this.hospitalInfo={
+               hospitalId:null,
+               name:null,
+               tel:null,
+               address:null,
+               footLogo:null,
+            };
+            this.editHospital=true;
+         },
          change(val){
             this.editHospital=true;
             this.hospitalInfo=val;

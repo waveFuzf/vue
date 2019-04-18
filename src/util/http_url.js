@@ -71,6 +71,7 @@ const deleteHospital=(hospitalId)=>post("bladmin/deleteHospital.htm",hospitalId)
 const saveHospital=(hzHospital)=>postInfo("bladmin/saveHospital.htm",hzHospital);
 const updateHospital=(hzHospital)=>postInfo("bladmin/updateHospital.htm",hzHospital);
 const getEvaluateById=(doctorId)=>post("evaluate/selectEvaluateById.htm",doctorId);
+const getUserLists=(pageNo,name)=>post("bladmin/getUserLists.htm",pageNo,name);
 export default {
     getAll,
     getByName,
@@ -135,5 +136,6 @@ export default {
     deleteHospital,
     saveHospital,
     updateHospital,
-    getEvaluateById
+    getEvaluateById,
+    getUserLists
 }

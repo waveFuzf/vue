@@ -18,15 +18,15 @@
         </el-row>
         </el-row>
         <el-row style="font-size:14px;color:#425b77;margin-top:20px;line-height:28px;">
-            <span>共有 <span style="color:#409EFF;">{{res.length}} </span>项</span>
-            <el-button style="float:right;" size="mini" @click="exportExcel">导出Excel</el-button>
+            <span style="float:left;">共有 <span style="color:#409EFF;">{{res.length}} </span>项</span>
+            <el-button style="float:left;margin-left:700px;" size="mini" @click="exportExcel">导出Excel</el-button>
         </el-row>
         <el-table
           id="out-table"
           v-loading="loading"
           :data="res"
           stripe
-          style="border:1px solid #cccdce;width:880px;height:290px;margin-top:20px;"
+          style="border:1px solid #cccdce;width:850px;height:290px;margin-top:20px;"
         >
           <el-table-column prop="name" :label="selectForm.radio=='1'?'医院名称':'部位'" width="130"></el-table-column>
           <el-table-column prop="one" label="质量不合格" width="120"></el-table-column>
