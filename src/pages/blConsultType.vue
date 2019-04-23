@@ -218,7 +218,7 @@
 
 <script>
 import axion from "@/util/http_url.js";
-import { saveCookie, getCookie } from "@/util/cookie.js";
+import { saveCookie, getCookie,cache } from "@/util/cookie.js";
 export default {
     components: {
         layoutHeader: () => import("@/components/header"),
@@ -308,11 +308,18 @@ export default {
         },
         uploads(e){
             const file = e.target.files[0];
+            var type=/png/;
+            if(!type.test(file.type)){
+                return;
+            }
             let formData = new FormData();
             formData.append("file", file);
             axion.uploadPic(formData).then(res=>{
                 // if(res.data.message)
-                this.successSlidesInfo.push(res.data.data);
+                if(res.data.code == 'SUCCESS'){
+                    this.successSlidesInfo.push(res.data.data);
+                }
+                
             });
         },
         openFileSelect() {

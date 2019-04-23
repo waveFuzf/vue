@@ -22,7 +22,7 @@
                         <span>简介：{{doctorInfo.description?doctorInfo.description:"暂无信息"}}</span>
                     </div>
                     <div style="float:right;margin-top:20px;padding:20px 40px;font-size:13px;color:#333;width:200px;border-left:1px solid #cec5c5;">
-                        <el-button type="primary" v-on:click="dosth">申请会诊</el-button><br><br>
+                        <el-button type="primary" v-on:click="dosth()">申请会诊</el-button><br><br>
                         会诊费用：<br><br>
                         <div v-for="item in doctorInfo.prices" :key="item.index" v-if="item.priceTypeId!=304">
                             {{item.priceTypeName}}<span style="color:red;font-size:16px;margin-left:10px;">￥{{(item.price/100).toFixed(2)}}</span>
@@ -38,13 +38,27 @@
                 
             </div>
 
-            <div style="width:80%;height:250px;margin:0 auto;border:1px solid #cec5c5;background-color:white;">
+            <div style="width:80%;min-height:250px;margin:0 auto;border:1px solid #cec5c5;background-color:white;">
                 <div style="width:95%;margin:10px auto;font-size:20px;color:#111;">
                     评价(<span style="color:orange;">{{count}}</span>)
                 </div>
                 <div style="width:95%;margin:10px auto;border:0.5px solid #cec5c5;"></div>
-                <div style="width:95%;margin:5px auto;color:#111;" v-for="item in evaluates" :key="item">
-                    {{item}}
+                <div v-if="evaluates.length==0" style="width:100px;margin:85px  auto;">暂无任何评价</div>
+                <div style="width:95%;min-height:60px;margin:5px auto;color:#111;border-bottom:1px solid #cec5c5;" v-for="item in evaluates" :key="item.id">
+                    <div style="float:left;cursor:pointer;">
+                        <el-tooltip class="item" effect="dark" :content="item.doctorName" placement="left">
+                            <router-link :to="'expertInfo?doctorId=' + item.evaluatorId">
+                            <img style="width:50px" class="floatLeft" src="../assets/img/default.jpg" alt="头像">
+                            </router-link>
+                         </el-tooltip>
+                    </div>
+                    <div style="float:left;margin-left:50px;width:750px;">
+                        <div>{{item.evaluateText}}</div>
+                        <!-- <div v-for="emmm in item.additionalComments" :key="emmm.id">
+                            {{emmm.evaluateText}}
+                        </div> -->
+                        <el-rate style="margin-top:10px;" show-text :texts=rates disabled v-model="item.evaluateWhole"></el-rate>
+                    </div>
                 </div>
             </div>
 
@@ -72,7 +86,14 @@ export default {
             isLogin:false,
             doctorInfo:{},
             evaluates:[],
+            rates:["非常不满意", "不满意", "一般", "非常满意", "满意"],
         }
+    },
+    watch:{
+      $route:function(){
+          this.doctorId=this.$route.query.doctorId;
+          this.getExpertInfoById();
+      }
     },
     mounted() {
         this.doctorId=this.$route.query.doctorId;
@@ -80,11 +101,12 @@ export default {
         this.getUserInfo();
     },
     methods:{
+
         refreshCase(){
 
         },
         dosth(){
-
+            this.$router.push("/blConsultType");
         },
         getExpertInfoById(){
             axion.getExpertInfoById({doctorId:this.doctorId}).then(res=>{
