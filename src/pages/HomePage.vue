@@ -1,8 +1,8 @@
 <template>
   <div style="background-color:#f8f7f7;">
     <layout-header pagename="管理中心" :myInfo="myInfo" :isLogin="isLogin" @getUserInfo="getUserInfo"></layout-header>
-    <el-container style="minHeight:804px;width:80%;margin:0 auto;">
-      <el-aside width="200px" style="height:100%;">
+    <el-container style="minHeight:800px;width:80%;margin:50px auto;">
+      <el-aside width="200px" style="min-height:100%;">
         <el-menu
           :default-active="emmm"
           class="el-menu-vertical-demo"

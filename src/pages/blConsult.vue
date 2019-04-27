@@ -1,5 +1,6 @@
 <template>
-  <div style="background-color:#f8f7f7;height:800px;">
+  <div style="background-color:#f8f7f7;">
+    <div style="min-height:550px;">
     <layout-header
       :pagename="pagename"
       :myInfo="myInfo"
@@ -74,7 +75,8 @@
     <el-dialog title="补充检查" :visible.sync="bcjcVisible" class="bcjc" @close="closeBCJC">
       <bcjc-dialog ref="initDialog" :clickItem="clickItem" @successClose="getConsultsInfo(0)"></bcjc-dialog>
     </el-dialog>
-
+    </div>
+  <div style="background-color:#374266;height:50px;margin-top:71px;width:100%;"></div>
 
   </div>
 </template>

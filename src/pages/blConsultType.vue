@@ -29,8 +29,10 @@
                 <div class="rectangle"><div @click="clear(4)">提交订单</div></div>
             </div>
         </div>
-        <div style="margin-top: 40px;width:95%;float:left;margin-left:2.5%;">
-            <el-row v-if="done==1">
+        
+        <div style="margin-top: 30px;width:95%;float:left;margin-left:2.5%;">
+            <div style="width:100%;border:0.5px solid #e6e6e6;"></div>
+            <el-row v-if="done==1" style="margin-top:50px;">
                 <el-row>
                 <el-col :span="4" :push="3*(index+1)" v-for="(slideTypeInfo,index) in slideTypesInfo" :key="slideTypeInfo.index">
                     <img :src="slideTypeInfo.icon" width="125" height="125" @click="changeSlideType(slideTypeInfo)">
@@ -46,7 +48,7 @@
 寄送切片会诊：
 寄送病理切片及其他临床病历至会诊中心，经数字化后再进行会诊。</div>
             </el-row>
-            <el-row v-if="done==2">
+            <el-row v-if="done==2" style="margin-top:50px;">
                 <el-col :span="4" :push="3*(index+1)" v-for="(caseTypeInfo,index) in caseTypesInfo" :key="caseTypeInfo.index">
                     <div v-if="!(caseTypeInfo.caseType == '303' && info.slideType == '1')">
                         <img :src="caseTypeInfo.icon" width="125" height="125" @click="changeCaseType(caseTypeInfo)">
@@ -54,7 +56,7 @@
                     </div>
                 </el-col>
             </el-row>
-            <el-row v-if="done==3">
+            <el-row v-if="done==3" style="margin-top:50px;">
                 <el-col :push="2">
                 <el-form :model="consultInfo" label-width="120px">
                     <el-row type="flex">
@@ -380,6 +382,14 @@ export default {
                 this.done = 1;
                 this.info.caseTypeId="";
                 this.info.slideType = "";
+                return;
+            }
+            if(!this.info.slideType){
+                this.done = 1;
+                return;
+            }
+            if(this.info.slideType&&!this.info.caseTypeId){
+                this.done = 2;
                 return;
             }
             this.done = val;         

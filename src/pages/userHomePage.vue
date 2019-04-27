@@ -18,7 +18,7 @@
 
     <div class="caseConsultation-process-system">最优秀的专家队伍</div>
     <div class="caseConsultation-process-eng">Experts</div>
-    <div style="width:100%;height:250px;">
+    <div style="width:100%;height:150px;margin-top:40px;">
         <doctor-info v-for="item in doctorsInfo" :doctorInfo="item" :key="item.index"></doctor-info>
     </div>
 
