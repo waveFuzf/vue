@@ -32,14 +32,14 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      <el-container>
+      <el-container style="background-color:white;margin-left:10px;margin-top:10px;">
         <el-main>
           <router-view keep-alive></router-view>
         </el-main>
       </el-container>
     </el-container>
 
-    <div style="background-color:#374266;height:50px;margin-top:20px;width:100%;"></div>
+    <div style="background-color:#374266;height:50px;width:100%;"></div>
   </div>
 </template>
 <script>

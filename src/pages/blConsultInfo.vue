@@ -152,17 +152,23 @@
                       <div style="height:40px;"><span style="float:left;">专业性评价：</span><el-rate v-model="evaluate.evaluateProfession" show-text :texts=rates :disabled="isEvaluate"></el-rate></div>
                       <div style="height:40px;"><span style="float:left;">及时性评价：</span><el-rate v-model="evaluate.evaluateIntime" show-text :texts=rates :disabled="isEvaluate"></el-rate></div>
                   </el-form-item>
-
+                  <span v-if="evaluate.additionalComments" style="color:orange;">追评</span>
+                  <div style="height:50px;line-height:50px;" v-for="(item,index) in evaluate.additionalComments" :key="item.id">
+                      
+                      <span style="margin-left:50px;color:orange;">{{item.evaluateText}}</span>
+                      <span style="margin-right:50px;float:right;">&nbsp;&nbsp;{{item.createTime}}&nbsp;&nbsp;追加评论</span>
+                      <div style="width:100%;border:0.5px solid #ebebeb;" v-if="index!=evaluate.additionalComments.length-1"></div>
+                  </div>
                   <el-form-item>
                       <el-button @click="evaluateConfirm" v-if="!isEvaluate">
                           提交
                       </el-button>
 
                   </el-form-item>
-
-
-
               </el-form>
+              <el-button style="float:right;margin-right:50px;" @click="donoth" size="mini">
+                追加评价
+              </el-button> 
               </el-col>
               </el-row>
               </div>
@@ -326,6 +332,18 @@
       </span>
     </el-dialog>
 
+    <el-dialog title="追加评价" :visible.sync="additionalEvaluateVisible" width="400px" class="back">
+        <el-form>
+            <el-form-item label="" label-width="0px" style="margin-top:10px;">
+                <el-input type="textarea" v-model="additionalEvaluate"></el-input>
+            </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="additionalEvaluateVisible = false">取 消</el-button>
+            <el-button type="primary" @click="additionalEvaluateConfirm()">确 定</el-button>
+      </span>
+    </el-dialog>
+
     <el-dialog title="补充检查" :visible.sync="expectDocBcjc" width="40%">
       <el-form>
         <el-form-item label="结果判定：" label-width="100px" style="margin-top:10px;" required>
@@ -352,6 +370,8 @@ import "@/assets/css/iconfont.css";
 export default {
   data() {
     return {
+      additionalEvaluateVisible:false,
+      additionalEvaluate:null,
       isEvaluate:false,
       rates:["非常不满意", "不满意", "一般", "非常满意", "满意"],
       evaluate:{
@@ -426,6 +446,30 @@ export default {
     
   },
   methods: {
+    donoth(){
+        this.additionalEvaluateVisible=true;
+    },
+    additionalEvaluateConfirm(){
+        var evaluate={};
+        evaluate.consultId=this.consultId;
+        evaluate.type=1;
+        evaluate.evaluateText=this.additionalEvaluate;
+        axion.applyDoctorEvaluate(evaluate).then(res=>{
+            if(res.data.code=="SUCCESS"){
+               this.$message({
+                    type: "info",
+                    message: `评价成功!`
+                });
+                this.additionalEvaluateVisible=false;
+            }else {
+                this.$message({
+                    type: "info",
+                    message: res.data.message
+                });
+            }
+            
+        });
+    },
     evaluateConfirm(){
         this.evaluate.consultId=this.consultId;
         this.evaluate.type=0;
@@ -658,7 +702,7 @@ export default {
           this.patientInfo = this.consultDetail.consultPatient;
           this.expectDoc = this.consultDetail.doctors[1];
           if(this.consultDetail.consultStatus==6){
-              axion.selectEvaluateByConsultId({consultId:this.consultId}).then(res=>{
+              axion.selectEvaluateByConsultId({consultId:this.consultId,userId:this.myInfo.userId,type:this.doctorType}).then(res=>{
                   if(res.data.data){
                       this.isEvaluate=true;
                       this.evaluate=res.data.data;

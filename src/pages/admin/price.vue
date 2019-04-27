@@ -12,7 +12,7 @@
           :data="res"
           v-loading="loading"
           stripe
-          style="width:700px;height:500px;"
+          style="width:612px;border:1px solid #ebebeb;border-bottom:0px;margin-top:20px;"
         >
           <!-- <el-table-column prop="index" label="序号" width="53"></el-table-column> -->
           <el-table-column label="序号" width="80">
@@ -134,8 +134,13 @@ export default {
              
          },
          edit(val){
-             this.res[val].edit=!this.res[val].edit;
-             this.res[val].positionName=this.res[val].positionName+" ";
+             if(this.res[val].priceTypeId){
+                this.res[val].edit=!this.res[val].edit;
+                this.res[val].positionName=this.res[val].positionName+"";
+             }else{
+                 this.res.length=val;
+             }
+             
          },
          deletePrice(index,val){
              axion.deletePriceConfig({id:val.price_id}).then(res=>{

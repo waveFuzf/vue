@@ -24,3 +24,24 @@ export function signOut() {
 export function isLogin() {
   return !!cookies.get('token')
 }
+
+export const cache = {
+    setItem(key, value) {
+      let data = JSON.stringify(value);
+      if (process.env.NODE_ENV == 'production') {
+        data = Base64.encode(data);
+      }
+      sessionStorage.setItem(key, data);
+    },
+    getItem(key) {
+      let data = sessionStorage.getItem(key);
+      if (!data) return null;
+      if (process.env.NODE_ENV == 'production') {
+        data = Base64.decode(data);
+      }
+      return data ? JSON.parse(data) : null;
+    },
+    removeItem(key) {
+      sessionStorage.removeItem(key)
+    }
+  }
